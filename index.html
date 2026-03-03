@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subash ❤️ Deepika | The Royal Union</title>
+<title>Subash ❤️ Deepika | Royal Wedding</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
@@ -15,54 +15,51 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-    font-family:'Poppins',sans-serif;
-    background: var(--dark-maroon); 
-    color:#fff;
-    scroll-behavior:smooth; 
-    overflow-x: hidden;
-}
+body{font-family:'Poppins',sans-serif; background: var(--dark-maroon); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- Header Section (Fixed for Left Side Face) --- */
+/* --- RESPONSIVE HEADER (Both Mobile & Desktop Optimized) --- */
 header{
     height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('photo1.jpg') no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('photo1.jpg') no-repeat;
     background-size: cover;
-    
-    /* மணமகன் இடது பக்கம் இருப்பதால் 'left' மற்றும் '20%' மேலிருந்து அட்ஜஸ்ட் செய்யப்பட்டுள்ளது */
-    background-position: left 20%; 
-    
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
 }
 
-/* மொபைல் போன்களில் முகம் கட் ஆகாமல் இருக்க பிரத்யேக அட்ஜஸ்ட்மென்ட் */
-@media (max-width: 600px) {
+/* DESKTOP VIEW: போட்டோவை வலது பக்கம் மையப்படுத்தி காட்டும் */
+@media (min-width: 1024px) {
     header {
-        /* 25% என்பது போட்டோவை இடது பக்கத்திலிருந்து மணமகன் முகம் தெரியுமாறு நகர்த்தும் */
-        background-position: 25% center; 
+        background-position: right center;
+        background-attachment: fixed; /* Parallax effect for desktop */
+    }
+}
+
+/* MOBILE VIEW: மணமகன் முகம் கட் ஆகாமல் இருக்க வலது பக்கத்திற்கு அதிக முக்கியத்துவம் */
+@media (max-width: 1023px) {
+    header {
+        background-position: 85% center; /* 85% வலது பக்கம் நகர்த்தப்பட்டுள்ளது */
         background-attachment: scroll;
     }
 }
 
 .hero-content{
     z-index:2;
-    padding: 20px;
+    padding: 25px;
     background: rgba(0,0,0,0.4);
-    border-radius: 15px;
-    backdrop-filter: blur(3px);
-    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     animation: fadeInUp 2s ease-out;
 }
 
 .trending-quote {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(22px, 5vw, 30px);
+    font-size: clamp(24px, 5vw, 32px);
     color: var(--gold);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
@@ -75,7 +72,7 @@ header{
     text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
 }
 
-/* --- Content Sections --- */
+/* --- Sections & Cards --- */
 section{padding:80px 20px; text-align:center;}
 h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:38px; margin-bottom:10px;}
 .divider{width:60px; height:2px; background:var(--gold); margin:20px auto 30px;}
@@ -106,17 +103,13 @@ h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:38px; marg
     transition: 0.5s ease;
     border: 1px solid rgba(212, 175, 55, 0.1);
 }
-.gallery img:hover{
-    transform: scale(1.03);
-    border-color: var(--gold);
-}
+.gallery img:hover{ transform: scale(1.03); border-color: var(--gold); }
 
-/* --- UI Elements --- */
+/* --- Floating Music Button --- */
 .music-btn {
     position: fixed; bottom: 25px; left: 20px; z-index: 1000;
-    background: var(--gold);
-    color: #000; border: none; padding: 10px 20px;
-    border-radius: 30px; font-weight: 600; cursor: pointer;
+    background: var(--gold); color: #000; border: none; padding: 12px 20px;
+    border-radius: 30px; font-weight: bold; cursor: pointer;
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     display: flex; align-items: center; gap: 8px;
 }
@@ -126,19 +119,13 @@ h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:38px; marg
   to { opacity: 1; transform: translateY(0); }
 }
 
-footer{ padding:40px; background: #1a0202; color:var(--gold); text-align: center;}
+footer{ padding:50px; background: #1a0202; color:var(--gold); text-align: center; letter-spacing: 2px;}
 
 #lightbox{
     position:fixed; top:0; left:0; width:100%; height:100%;
-    background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999;
+    background:rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center; z-index:9999;
 }
 #lightbox img{ max-width:90%; max-height:85%; border-radius: 10px; border: 2px solid var(--gold); }
-
-input, textarea {
-    width: 100%; padding: 12px; margin-bottom: 15px;
-    background: rgba(255,255,255,0.1); border: 1px solid var(--gold);
-    border-radius: 8px; color: #fff; outline: none;
-}
 </style>
 </head>
 
@@ -165,11 +152,11 @@ input, textarea {
     <h2>The Wedding</h2>
     <div class="divider"></div>
     <p style="font-size: 18px; margin-bottom: 15px;">We request the honor of your presence at the marriage of our children.</p>
-    <p style="color: var(--gold); font-weight: 600; font-size: 20px;">Hindu Nadar Sanga Thirumana Mandapam</p>
+    <p style="color: var(--gold); font-weight: 600; font-size: 22px;">Hindu Nadar Sanga Thirumana Mandapam</p>
     <p>Sivagalai – Tuticorin District</p>
     <br>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.0!2d77.9!3d8.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMzYnMDAuMCJOIDc3wrA1NCc0MC4wIkU!5e0!3m2!1sen!2sin!4v1640000000000" 
-    width="100%" height="300" style="border-radius:15px; border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.5!2d77.9616!3d8.6416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f0907e5c54c3%3A0x6331a98622f3066a!2sSivagalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000" 
+    width="100%" height="300" style="border-radius:15px; border:0; opacity: 0.8;" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
@@ -194,14 +181,11 @@ input, textarea {
 <h2>Bless the Couple</h2>
 <div class="divider"></div>
 <div class="glass-card">
-  <input type="text" placeholder="Your Name">
-  <textarea placeholder="Your Warm Wishes"></textarea>
+  <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; margin-bottom: 15px; background: rgba(255,255,255,0.1); border: 1px solid var(--gold); border-radius: 8px; color: #fff; outline: none;">
+  <textarea placeholder="Your Warm Wishes" style="width: 100%; padding: 12px; margin-bottom: 15px; background: rgba(255,255,255,0.1); border: 1px solid var(--gold); border-radius: 8px; color: #fff; height: 100px; outline: none;"></textarea>
   <button style="width: 100%; background: var(--gold); color: #000; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer;">Send Wishes</button>
-  
   <div style="margin-top: 25px;">
-    <button onclick="share()" style="background: #25D366; color: #fff; width: 100%; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
-      Share on WhatsApp
-    </button>
+    <button onclick="share()" style="background: #25D366; color: #fff; width: 100%; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">Share on WhatsApp</button>
   </div>
 </div>
 </section>
