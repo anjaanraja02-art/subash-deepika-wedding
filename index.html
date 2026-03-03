@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subash ❤️ Deepika | Royal Wedding</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Poppins',sans-serif;background:#000;color:#fff;scroll-behavior:smooth;}
+
+section{padding:80px 20px;text-align:center;}
+h2{font-family:'Playfair Display',serif;color:gold;font-size:38px;margin-bottom:20px;}
+.divider{width:100px;height:3px;background:gold;margin:20px auto;}
+
+header{
+height:100vh;
+background:url('photos/photo1.jpg') center/cover no-repeat;
+display:flex;justify-content:center;align-items:center;
+text-align:center;
+position:relative;
+}
+header::after{
+content:"";
+position:absolute;top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.6);
+}
+.hero-content{
+position:relative;z-index:2;
+}
+.hero-content h1{
+font-size:48px;color:gold;text-shadow:0 0 20px gold;
+}
+.hero-content p{margin-top:15px;font-size:20px;}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+}
+.gallery img{
+width:100%;
+height:300px;
+object-fit:cover;
+border-radius:15px;
+cursor:pointer;
+transition:0.4s;
+}
+.gallery img:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px gold;
+}
+
+/* Lightbox */
+#lightbox{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+#lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:15px;
+}
+
+.card{
+background:rgba(255,215,0,0.1);
+border:1px solid gold;
+padding:25px;
+margin:20px auto;
+max-width:600px;
+border-radius:15px;
+}
+
+input,textarea{
+width:100%;
+padding:12px;
+margin-bottom:15px;
+border:none;
+border-radius:8px;
+}
+
+button{
+padding:10px 20px;
+background:gold;
+border:none;
+border-radius:20px;
+font-weight:bold;
+cursor:pointer;
+}
+
+footer{
+background:#111;
+padding:30px;
+color:gold;
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 👑 HERO -->
+<header>
+<div class="hero-content">
+<h1>P. Subash Raja ❤️ S. Deepika</h1>
+<p>16 March 2026 | 9:30 AM – 10:30 AM</p>
+</div>
+</header>
+
+<!-- 💍 DETAILS -->
+<section>
+<h2>Wedding Ceremony</h2>
+<div class="divider"></div>
+<p><b>Date:</b> 16 March 2026</p>
+<p><b>Venue:</b> Hindu Nadar Sanga Thirumana Mandapam</p>
+<p>Sivagalai – Tuticorin District</p>
+<br>
+<iframe src="https://www.google.com/maps?q=Sivagalai,Tuticorin&output=embed"
+width="100%" height="300" style="border-radius:15px;"></iframe>
+</section>
+
+<!-- 📸 GALLERY -->
+<section>
+<h2>Our Beautiful Moments</h2>
+<div class="divider"></div>
+
+<div class="gallery">
+<img src="photos/photo1.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo2.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo3.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo4.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo5.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo6.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo7.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo8.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo9.jpg" onclick="openLightbox(this.src)">
+<img src="photos/photo10.jpg" onclick="openLightbox(this.src)">
+</div>
+
+</section>
+
+<!-- 💌 WISHES -->
+<section>
+<h2>Send Your Wishes</h2>
+<div class="divider"></div>
+
+<div class="card">
+<input placeholder="Your Name">
+<textarea placeholder="Your Wishes"></textarea>
+<button>Submit</button>
+</div>
+
+<div class="card">
+<button onclick="share()">Share on WhatsApp</button>
+</div>
+</section>
+
+<footer>
+With Divine Blessings 🙏<br>
+Subash Raja ❤️ Deepika
+</footer>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+<img id="lightboxImg">
+</div>
+
+<script>
+function openLightbox(src){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightboxImg").src=src;
+}
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
+function share(){
+var url=window.location.href;
+window.open("https://wa.me/?text="+encodeURIComponent("Join Subash ❤️ Deepika Wedding 💍 "+url));
+}
+</script>
+
+</body>
+</html>
