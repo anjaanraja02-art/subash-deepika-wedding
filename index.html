@@ -189,3 +189,15 @@ window.open("https://wa.me/?text="+encodeURIComponent("Join Subash ❤️ Deepik
 
 </body>
 </html>
+
+<audio id="weddingMusic" loop>
+  <source src="wedding-music.mp3" type="audio/mpeg">
+</audio>
+
+<div style="position: fixed; bottom: 20px; left: 20px; z-index: 100;">
+  <button onclick="var audio = document.getElementById('weddingMusic'); if (audio.paused) { audio.play(); this.innerHTML = '⏸ Stop Music'; } else { audio.pause(); this.innerHTML = '🎵 Play Music'; }" 
+          style="background: #ff4d4d; color: white; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+    🎵 Play Music
+  </button>
+</div>
+
