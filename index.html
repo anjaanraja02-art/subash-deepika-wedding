@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subash ❤️ Deepika | Royal Wedding</title>
+<title>Subash ❤️ Deepika | The Royal Wedding</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --gold: #D4AF37;
-  --bg-color: #000; 
+  --premium-black: #0a0a0a;
+  --glass: rgba(0, 0, 0, 0.6);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif; background: var(--bg-color); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
+body{font-family:'Poppins',sans-serif; background: var(--premium-black); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- HEADER FIX --- */
+/* --- LUXURY HEADER --- */
 header{
     height: 100vh;
     width: 100%;
@@ -28,106 +29,123 @@ header{
     overflow: hidden;
 }
 
-.full-bg {
+/* Photo Full Screen setting - Face cut fixed */
+.main-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: url('photo1.jpg') center/cover no-repeat;
     z-index: 1;
 }
 
+/* Gradient overlay for text clarity */
 header::after {
     content: "";
     position: absolute;
-    bottom: 0; left: 0; width: 100%; height: 60%;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    top:0; left:0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
     z-index: 2;
 }
 
-/* மொபைலில் முகம் சரியாகத் தெரிய அட்ஜஸ்ட்மென்ட் */
+/* Mobile-la unga photo position-a naane set panniyachu */
 @media (max-width: 768px) {
-    .full-bg {
-        background-position: 75% center; 
+    .main-bg {
+        background-position: 78% center; /* This ensures both faces are visible on mobile */
     }
 }
 
 .hero-content{
     z-index: 10;
-    padding: 30px;
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 20px;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    max-width: 85%;
-    animation: fadeInUp 2s ease-out;
+    padding: 40px 20px;
+    max-width: 90%;
+    animation: fadeIn 2s ease-in-out;
 }
 
 .trending-quote {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(22px, 5vw, 32px);
+    font-size: clamp(26px, 6vw, 40px);
     color: var(--gold);
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
 .hero-content h1{
     font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 9vw, 60px);
+    font-size: clamp(35px, 10vw, 75px);
     background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.wedding-date {
+    font-size: 18px;
+    letter-spacing: 4px;
+    color: #fff;
+    border-top: 1px solid var(--gold);
+    border-bottom: 1px solid var(--gold);
+    display: inline-block;
+    padding: 8px 25px;
+    font-weight: 600;
 }
 
 /* --- SECTIONS --- */
-section{padding:80px 20px; text-align:center;}
-h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:36px; margin-bottom:10px;}
-.divider{width:60px; height:2px; background:var(--gold); margin:20px auto 30px;}
+section{padding:100px 20px; text-align:center;}
+h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:40px; letter-spacing: 2px;}
+.divider{width:80px; height:2px; background:var(--gold); margin:20px auto 40px;}
 
-.glass-card {
-    background: rgba(255, 255, 255, 0.05);
+.details-card {
+    background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(212, 175, 55, 0.2);
-    border-radius: 20px;
-    padding: 35px;
-    max-width: 650px;
+    border-radius: 30px;
+    padding: 50px 30px;
+    max-width: 800px;
     margin: 0 auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
-/* --- GALLERY GRID (அனைத்து போட்டோக்களும் இங்கே) --- */
+/* --- PAKKA GALLERY GRID --- */
 .gallery{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-    max-width: 1100px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 .gallery img{
-    width:100%; height:320px; object-fit:cover;
-    border-radius:12px; cursor:pointer;
-    transition: 0.5s ease;
+    width:100%; height:400px; object-fit:cover;
+    border-radius:20px; cursor:pointer;
+    transition: 0.6s all ease;
     border: 1px solid rgba(212, 175, 55, 0.1);
 }
-.gallery img:hover{ transform: scale(1.03); border-color: var(--gold); }
+.gallery img:hover{ 
+    transform: translateY(-10px); 
+    border-color: var(--gold); 
+    box-shadow: 0 15px 30px rgba(212,175,55,0.2);
+}
 
-/* --- UI ELEMENTS --- */
+/* FLOATING MUSIC BUTTON */
 .music-btn {
-    position: fixed; bottom: 25px; left: 20px; z-index: 1000;
-    background: var(--gold); color: #000; border: none; padding: 12px 20px;
-    border-radius: 30px; font-weight: bold; cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-    display: flex; align-items: center; gap: 8px;
+    position: fixed; bottom: 30px; left: 30px; z-index: 1000;
+    background: var(--gold); color: #000; 
+    border: none; padding: 15px 25px; border-radius: 50px; 
+    font-weight: bold; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: flex; align-items: center; gap: 10px;
 }
 
-#lightbox{
-    position:fixed; top:0; left:0; width:100%; height:100%;
-    background:rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center; z-index:9999;
-}
-#lightbox img{ max-width:90%; max-height:85%; border-radius: 10px; border: 2px solid var(--gold); }
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-footer{ padding:40px; background: #000; color:var(--gold); text-align: center;}
+footer{ padding:80px 20px; background: #050505; color:var(--gold); text-align: center; border-top: 1px solid #1a1a1a;}
+
+#lightbox{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.98); display:none; justify-content:center; align-items:center; z-index:9999;
+}
+#lightbox img{ max-width:95%; max-height:90%; border-radius:10px; border: 1px solid var(--gold); }
 </style>
 </head>
 
@@ -142,28 +160,29 @@ footer{ padding:40px; background: #000; color:var(--gold); text-align: center;}
 </button>
 
 <header>
-  <div class="full-bg"></div>
+  <div class="main-bg"></div>
   <div class="hero-content">
-    <div class="trending-quote">"Two Hearts, One Soul... A Journey of Love Begins!"</div>
+    <div class="trending-quote">A Match Made in Heaven...</div>
     <h1>Subash & Deepika</h1>
-    <p style="font-size: 16px; letter-spacing: 2px; color: gold; margin-top: 5px; font-weight: bold;">MARCH 16 • 2026</p>
+    <div class="wedding-date">MARCH 16, 2026</div>
   </div>
 </header>
 
 <section>
-  <div class="glass-card">
-    <h2>Wedding Ceremony</h2>
+  <div class="details-card">
+    <h2>The Ceremony</h2>
     <div class="divider"></div>
-    <p style="color: var(--gold); font-weight: 600; font-size: 20px;">Hindu Nadar Sanga Thirumana Mandapam</p>
-    <p>Sivagalai – Tuticorin District</p>
-    <br>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.516109462828!2d77.9304323!3d8.9664567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f00000000001%3A0x6b4c100000000000!2sSivagalai!5e0!3m2!1sen!2sin!4v1700000000000" 
-    width="100%" height="250" style="border-radius:15px; border:0; opacity: 0.8;" allowfullscreen="" loading="lazy"></iframe>
+    <p style="font-size: 20px; margin-bottom: 20px; color: #ccc;">We warmly invite you to share in our joy.</p>
+    <p style="color: var(--gold); font-weight: 600; font-size: 26px;">Hindu Nadar Sanga Thirumana Mandapam</p>
+    <p style="font-size: 18px; margin-bottom: 30px;">Sivagalai – Tuticorin District</p>
+    
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.043685608244!2d77.965825!3d8.971236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f0d0e1b6f0e3%3A0x6b0f0e3d0e1b6f0e!2sSivagalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1710000000000" 
+    width="100%" height="350" style="border-radius:20px; border:0; filter: grayscale(1) contrast(1.2) invert(90%);" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
 <section id="gallery">
-    <h2>Captured Moments</h2>
+    <h2>Our Memories</h2>
     <div class="divider"></div>
     <div class="gallery">
       <img src="photo1.jpg" onclick="openLightbox(this.src)">
@@ -180,15 +199,20 @@ footer{ padding:40px; background: #000; color:var(--gold); text-align: center;}
 </section>
 
 <footer>
-  WITH DIVINE BLESSINGS 🙏<br>
-  <span style="font-size: 20px; margin-top: 10px; display: block; color: var(--gold);">SUBASH ❤️ DEEPIKA</span>
+  <p style="font-size: 16px; opacity: 0.8;">WITH DIVINE BLESSINGS</p>
+  <span style="font-size: 30px; margin-top: 15px; display: block; color: var(--gold); font-family: 'Great Vibes', cursive;">Subash ❤️ Deepika</span>
+  <p style="margin-top: 20px; font-size: 12px; letter-spacing: 2px;">SEE YOU AT THE WEDDING!</p>
 </footer>
 
-<div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"></div>
+<div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightboxImg">
+</div>
 
 <script>
-function openLightbox(src){ document.getElementById("lightbox").style.display="flex"; document.getElementById("lightboxImg").src=src; }
-function closeLightbox(){ document.getElementById("lightbox").style.display="none"; }
+function openLightbox(src){ 
+    document.getElementById("lightbox").style.display="flex"; 
+    document.getElementById("lightboxImg").src=src; 
+}
 
 function toggleMusic() {
   var audio = document.getElementById('weddingMusic');
