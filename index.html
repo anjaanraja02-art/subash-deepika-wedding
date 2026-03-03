@@ -3,20 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subash ❤️ Deepika | The Royal Union</title>
+<title>Subash ❤️ Deepika | Royal Wedding</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
 :root {
   --gold: #D4AF37;
-  --bg-color: #1a0202; 
+  --bg-color: #000; 
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif; background: var(--bg-color); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- GRAND HEADER: NO FACE CUT DESIGN --- */
+/* --- HEADER FIX --- */
 header{
     height: 100vh;
     width: 100%;
@@ -28,35 +28,36 @@ header{
     overflow: hidden;
 }
 
-/* மங்கலான பின்புலம் - திரையை முழுமையாக நிரப்ப */
-.bg-blur {
+.full-bg {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background: url('photo1.jpg') center/cover no-repeat;
-    filter: blur(10px) brightness(0.4);
     z-index: 1;
-    transform: scale(1.1);
 }
 
-/* மணமக்கள் இருவரும் முழுமையாகத் தெரிய (Main View) */
-.couple-main {
+header::after {
+    content: "";
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: url('photo1.jpg') no-repeat;
-    background-size: contain; 
-    background-position: center bottom;
+    bottom: 0; left: 0; width: 100%; height: 60%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     z-index: 2;
+}
+
+/* மொபைலில் முகம் சரியாகத் தெரிய அட்ஜஸ்ட்மென்ட் */
+@media (max-width: 768px) {
+    .full-bg {
+        background-position: 75% center; 
+    }
 }
 
 .hero-content{
     z-index: 10;
     padding: 30px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     border: 1px solid rgba(212, 175, 55, 0.4);
     max-width: 85%;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.8);
     animation: fadeInUp 2s ease-out;
 }
 
@@ -64,48 +65,69 @@ header{
     font-family: 'Great Vibes', cursive;
     font-size: clamp(22px, 5vw, 32px);
     color: var(--gold);
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 5px;
 }
 
 .hero-content h1{
     font-family: 'Playfair Display', serif;
-    font-size: clamp(35px, 9vw, 65px);
+    font-size: clamp(32px, 9vw, 60px);
     background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* --- Content Sections --- */
-section{padding:100px 20px; text-align:center;}
-h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:40px;}
-.divider{width:60px; height:2px; background:var(--gold); margin:20px auto 40px;}
+/* --- SECTIONS --- */
+section{padding:80px 20px; text-align:center;}
+h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:36px; margin-bottom:10px;}
+.divider{width:60px; height:2px; background:var(--gold); margin:20px auto 30px;}
 
 .glass-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 20px;
-    padding: 40px;
-    max-width: 700px;
+    padding: 35px;
+    max-width: 650px;
     margin: 0 auto;
 }
 
-/* Floating Music Button */
+/* --- GALLERY GRID (அனைத்து போட்டோக்களும் இங்கே) --- */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.gallery img{
+    width:100%; height:320px; object-fit:cover;
+    border-radius:12px; cursor:pointer;
+    transition: 0.5s ease;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+.gallery img:hover{ transform: scale(1.03); border-color: var(--gold); }
+
+/* --- UI ELEMENTS --- */
 .music-btn {
-    position: fixed; bottom: 30px; left: 30px; z-index: 1000;
-    background: var(--gold); color: #000; border: none; padding: 12px 22px;
-    border-radius: 50px; font-weight: bold; cursor: pointer;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-    display: flex; align-items: center; gap: 10px;
+    position: fixed; bottom: 25px; left: 20px; z-index: 1000;
+    background: var(--gold); color: #000; border: none; padding: 12px 20px;
+    border-radius: 30px; font-weight: bold; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    display: flex; align-items: center; gap: 8px;
 }
 
+#lightbox{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center; z-index:9999;
+}
+#lightbox img{ max-width:90%; max-height:85%; border-radius: 10px; border: 2px solid var(--gold); }
+
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(50px); }
+  from { opacity: 0; transform: translateY(40px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-footer{ padding:50px; background: #110101; color:var(--gold); text-align: center;}
+footer{ padding:40px; background: #000; color:var(--gold); text-align: center;}
 </style>
 </head>
 
@@ -120,24 +142,41 @@ footer{ padding:50px; background: #110101; color:var(--gold); text-align: center
 </button>
 
 <header>
-  <div class="bg-blur"></div> <div class="couple-main"></div> <div class="hero-content">
+  <div class="full-bg"></div>
+  <div class="hero-content">
     <div class="trending-quote">"Two Hearts, One Soul... A Journey of Love Begins!"</div>
     <h1>Subash & Deepika</h1>
-    <p style="font-size: 18px; letter-spacing: 3px; color: gold; margin-top: 10px; font-weight: bold; border-top: 1px solid gold; border-bottom: 1px solid gold; display: inline-block; padding: 5px 15px;">MARCH 16 • 2026</p>
+    <p style="font-size: 16px; letter-spacing: 2px; color: gold; margin-top: 5px; font-weight: bold;">MARCH 16 • 2026</p>
   </div>
 </header>
 
 <section>
   <div class="glass-card">
-    <h2>The Wedding</h2>
+    <h2>Wedding Ceremony</h2>
     <div class="divider"></div>
-    <p style="font-size: 18px; margin-bottom: 20px;">We request the honor of your presence at the marriage of our children.</p>
-    <p style="color: var(--gold); font-weight: 600; font-size: 22px;">Hindu Nadar Sanga Thirumana Mandapam</p>
+    <p style="color: var(--gold); font-weight: 600; font-size: 20px;">Hindu Nadar Sanga Thirumana Mandapam</p>
     <p>Sivagalai – Tuticorin District</p>
     <br>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.046468724732!2d77.9424754!3d8.6481716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f09623e59b93%3A0x6e788c6978184f9b!2sHindu%20Nadar%20Mahimai%20Sangam!5e0!3m2!1sen!2sin!4v1710000000000" 
-    width="100%" height="300" style="border-radius:15px; border:0; opacity: 0.8;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.516109462828!2d77.9304323!3d8.9664567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f00000000001%3A0x6b4c100000000000!2sSivagalai!5e0!3m2!1sen!2sin!4v1700000000000" 
+    width="100%" height="250" style="border-radius:15px; border:0; opacity: 0.8;" allowfullscreen="" loading="lazy"></iframe>
   </div>
+</section>
+
+<section id="gallery">
+    <h2>Captured Moments</h2>
+    <div class="divider"></div>
+    <div class="gallery">
+      <img src="photo1.jpg" onclick="openLightbox(this.src)">
+      <img src="photo2.jpg" onclick="openLightbox(this.src)">
+      <img src="photo3.jpg" onclick="openLightbox(this.src)">
+      <img src="photo4.jpg" onclick="openLightbox(this.src)">
+      <img src="photo5.jpg" onclick="openLightbox(this.src)">
+      <img src="photo6.jpg" onclick="openLightbox(this.src)">
+      <img src="photo7.jpg" onclick="openLightbox(this.src)">
+      <img src="photo8.jpg" onclick="openLightbox(this.src)">
+      <img src="photo9.jpg" onclick="openLightbox(this.src)">
+      <img src="photo10.jpg" onclick="openLightbox(this.src)">
+    </div>
 </section>
 
 <footer>
@@ -145,7 +184,12 @@ footer{ padding:50px; background: #110101; color:var(--gold); text-align: center
   <span style="font-size: 20px; margin-top: 10px; display: block; color: var(--gold);">SUBASH ❤️ DEEPIKA</span>
 </footer>
 
+<div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"></div>
+
 <script>
+function openLightbox(src){ document.getElementById("lightbox").style.display="flex"; document.getElementById("lightboxImg").src=src; }
+function closeLightbox(){ document.getElementById("lightbox").style.display="none"; }
+
 function toggleMusic() {
   var audio = document.getElementById('weddingMusic');
   var btnText = document.getElementById('btnText');
