@@ -15,67 +15,59 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif; background: var(--bg); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- FIXED VIDEO OVERLAY --- */
-#intro-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center;
-    transition: opacity 1.5s ease-in-out, visibility 1.5s;
+header{
+    height: 100vh; width: 100%; position: relative;
+    display: flex; flex-direction: column; justify-content: space-between; 
+    align-items: center; padding: 10vh 0 3vh 0; text-align: center;
 }
-#intro-video {
+.main-bg {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: cover; opacity: 0.7; z-index: -1;
+    background: url('photo2.jpg') center/cover no-repeat; z-index: 1;
 }
-.intro-text {
-    z-index: 10000; text-align: center; color: var(--gold); 
-    opacity: 0; animation: fadeInOut 5.5s forwards;
-}
-.intro-text h2 { font-family: 'Great Vibes', cursive; font-size: 32px; margin-bottom: 5px; }
-.intro-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 8vw, 55px); letter-spacing: 4px; }
-
-@keyframes fadeInOut {
-    0% { opacity: 0; transform: scale(0.9); }
-    20% { opacity: 1; transform: scale(1); }
-    80% { opacity: 1; transform: scale(1.05); }
-    100% { opacity: 0; transform: scale(1.1); }
+header::after {
+    content: ""; position: absolute; top:0; left:0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, rgba(26,2,2,0.6) 0%, rgba(26,2,2,0) 40%, rgba(26,2,2,0) 60%, rgba(26,2,2,0.95) 100%);
+    z-index: 2;
 }
 
-/* --- MAIN UI --- */
-header { height: 100vh; width: 100%; position: relative; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 10vh 0 3vh 0; text-align: center; }
-.main-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('photo2.jpg') center/cover no-repeat; z-index: 1; }
-header::after { content: ""; position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(26,2,2,0.6) 0%, rgba(26,2,2,0) 40%, rgba(26,2,2,0) 60%, rgba(26,2,2,0.95) 100%); z-index: 2; }
 .hero-content { z-index: 10; position: relative; }
 .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 10vw, 65px); color: var(--gold); text-shadow: 2px 2px 15px rgba(0,0,0,0.9); }
+
 .countdown-container { z-index: 10; position: relative; margin-bottom: 2vh; }
 .countdown-wrap { display: flex; gap: 10px; justify-content: center; }
 .count-box { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid var(--gold); padding: 10px; border-radius: 12px; min-width: 65px; }
 .count-box span { display: block; font-size: 22px; font-weight: bold; color: var(--gold); }
-.luxury-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px; padding: 35px 20px; max-width: 700px; margin: 0 auto; text-align: center; }
-.action-btn { text-decoration: none; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-.reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-.reveal.active { opacity: 1; transform: translateY(0); }
+.count-box label { font-size: 9px; text-transform: uppercase; color: #ccc; }
+
+.invite-note { padding: 60px 20px; text-align: center; max-width: 800px; margin: 0 auto; font-family: 'Playfair Display', serif; }
+.invite-note h2 { color: var(--gold); font-size: 30px; margin-bottom: 20px; letter-spacing: 2px; }
+.invite-note p { font-size: 19px; line-height: 1.8; color: #fdfdfd; font-style: italic; }
+
 .gallery-section { padding: 40px 10px; background: #000; text-align: center; }
+.gallery-section h2 { color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 28px; letter-spacing: 2px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
 .gallery-grid img { width: 100%; height: 320px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); }
+
+section { padding: 50px 20px; }
+.luxury-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 35px 20px; max-width: 700px; margin: 0 auto; text-align: center; }
+
+.action-btn { text-decoration: none; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.action-btn:active { transform: scale(0.95); }
+
 .wishes-display { margin-top: 30px; text-align: left; max-height: 380px; overflow-y: auto; padding-right: 8px; }
 .wish-bubble { background: rgba(212,175,55,0.08); padding: 18px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--gold); position: relative; }
+.wish-bubble strong { color: var(--gold); font-size: 15px; }
+.wish-bubble p { font-size: 14px; margin-top: 6px; color: #eee; }
 .delete-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 12px; }
+
 input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 10px; color: #fff; outline: none; }
 .btn-gold { width: 100%; background: linear-gradient(45deg, #BF953F, #FCF6BA); color: #000; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; border: none; font-size: 16px; }
+
 .music-btn { position: fixed; bottom: 25px; left: 20px; z-index: 1000; background: var(--gold); color: #000; border: none; padding: 10px 18px; border-radius: 25px; font-size: 13px; font-weight: bold; }
 </style>
 </head>
 
 <body onclick="playMusicOnFirstClick()">
-
-<div id="intro-overlay">
-    <video id="intro-video" autoplay muted loop playsinline preload="auto">
-        <source src="http://googleusercontent.com/generated_video_content/7927196310720023034" type="video/mp4">
-    </video>
-    <div class="intro-text">
-        <h2>Save The Date</h2>
-        <h1>Subash & Deepika</h1>
-    </div>
-</div>
 
 <audio id="weddingMusic" loop><source src="wedding-music.mp3" type="audio/mpeg"></audio>
 <button class="music-btn" id="musicBtn" onclick="event.stopPropagation(); toggleMusic();">🎵 Play Music</button>
@@ -87,7 +79,9 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
     <h1>Subash & Deepika</h1>
     <p style="letter-spacing: 4px; font-weight: bold; color: #fff; border-top: 1px solid rgba(212,175,55,0.5); display: inline-block; padding-top: 5px; margin-top: 10px;">16.03.2026</p>
   </div>
+
   <div class="countdown-container">
+    <p style="margin-bottom: 12px; font-size: 12px; letter-spacing: 3px; color: rgba(255,255,255,0.8);">COUNTDOWN TO OUR BIG DAY</p>
     <div class="countdown-wrap">
       <div class="count-box"><span id="days">00</span><label>Days</label></div>
       <div class="count-box"><span id="hours">00</span><label>Hours</label></div>
@@ -97,52 +91,15 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
   </div>
 </header>
 
-<div class="invite-note reveal">
-    <h2 style="color: var(--gold); font-size: 30px; margin-bottom: 20px; font-family: 'Playfair Display', serif;">You Are Cordially Invited</h2>
-    <p style="font-size: 19px; line-height: 1.8; font-style: italic;">"Together with our families, we joyfully invite you to celebrate our wedding. Your love and presence on our special day would mean the world to us as we begin our journey together."</p>
+<div class="invite-note">
+    <h2>You Are Cordially Invited</h2>
+    <p>"Together with our families, we joyfully invite you to celebrate our wedding. Your love and presence on our special day would mean the world to us as we begin our journey together."</p>
 </div>
 
-<div class="gallery-section reveal">
-    <h2 style="color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 28px;">Captured Moments</h2>
+<div class="gallery-section">
+    <h2>Captured Moments</h2>
     <div class="gallery-grid">
       <img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg"><img src="photo4.jpg">
       <img src="photo5.jpg"><img src="photo6.jpg"><img src="photo7.jpg"><img src="photo8.jpg">
     </div>
 </div>
-
-<section class="reveal">
-  <div class="luxury-card">
-    <h2 style="color: var(--gold); margin-bottom: 15px; font-family: 'Playfair Display', serif;">The Celebration Venue</h2>
-    <p style="font-size: 19px; font-weight: 600; color: #fff;">Hindu Nadar Sanga Thirumana Auditorium</p>
-    <p style="font-size: 15px; opacity: 0.8; margin-bottom: 5px;">Sivagalai, Tuticorin District, Tamil Nadu.</p>
-    <p style="color: gold; font-weight: bold; margin-bottom: 25px;">Muhurtham: 9:00 AM - 10:30 AM</p>
-    <div style="display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://www.google.com/maps/contrib/114334685951850801186/reviews" target="_blank" class="action-btn" style="background: #25d366;">📍 Navigate to Venue</a>
-      <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Subash+%26+Deepika+Wedding&dates=20260316T090000/20260316T130000&details=Bless+the+couple+on+their+special+day!&location=Hindu+Nadar+Sanga+Thirumana+Auditorium,+Sivagalai" target="_blank" class="action-btn" style="background: #4285f4;">📅 Add to Calendar</a>
-    </div>
-    <iframe src="https://www.google.com/maps/contrib/114334685951850801186/reviews" width="100%" height="280" style="border-radius:15px; border:1px solid rgba(212,175,55,0.3);" allowfullscreen="" loading="lazy"></iframe>
-  </div>
-</section>
-
-<section class="reveal">
-  <div class="luxury-card">
-    <h2 style="color: var(--gold); margin-bottom: 25px; font-family: 'Playfair Display', serif;">Send Your Blessings</h2>
-    <input type="text" id="nameInput" placeholder="Your Full Name">
-    <textarea id="wishInput" placeholder="Write your heartfelt wishes here..." rows="4"></textarea>
-    <button class="btn-gold" onclick="saveWish()">Send Your Wishes</button>
-    <div id="wishesDisplay" class="wishes-display"></div>
-  </div>
-</section>
-
-<footer style="padding:60px 20px; text-align:center; background:#080000;">
-  <p style="color: var(--gold); font-family: 'Great Vibes', cursive; font-size: 34px;">Subash ❤️ Deepika</p>
-</footer>
-
-<script>
-// FORCE VIDEO PLAY ON LOAD
-window.onload = function() {
-    var video = document.getElementById('intro-video');
-    
-    // Attempt play immediately
-    video.play().catch(function
-                       
