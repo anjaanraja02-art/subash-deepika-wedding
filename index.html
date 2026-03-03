@@ -15,7 +15,32 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif; background: var(--bg); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-header{
+/* --- CINEMATIC VIDEO INTRO --- */
+#intro-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center;
+    transition: opacity 1.5s ease-in-out, visibility 1.5s;
+}
+#intro-video {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0.6;
+}
+.intro-text {
+    z-index: 10000; text-align: center; color: var(--gold); 
+    animation: fadeInOut 5s forwards;
+}
+.intro-text h2 { font-family: 'Great Vibes', cursive; font-size: 35px; margin-bottom: 10px; }
+.intro-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 8vw, 60px); letter-spacing: 5px; }
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.9); }
+    30% { opacity: 1; transform: scale(1); }
+    80% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0; transform: scale(1.1); }
+}
+
+/* --- MAIN LAYOUT --- */
+header {
     height: 100vh; width: 100%; position: relative;
     display: flex; flex-direction: column; justify-content: space-between; 
     align-items: center; padding: 10vh 0 3vh 0; text-align: center;
@@ -37,27 +62,27 @@ header::after {
 .countdown-wrap { display: flex; gap: 10px; justify-content: center; }
 .count-box { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid var(--gold); padding: 10px; border-radius: 12px; min-width: 65px; }
 .count-box span { display: block; font-size: 22px; font-weight: bold; color: var(--gold); }
-.count-box label { font-size: 9px; text-transform: uppercase; color: #ccc; }
 
-.invite-note { padding: 60px 20px; text-align: center; max-width: 800px; margin: 0 auto; font-family: 'Playfair Display', serif; }
-.invite-note h2 { color: var(--gold); font-size: 30px; margin-bottom: 20px; letter-spacing: 2px; }
-.invite-note p { font-size: 19px; line-height: 1.8; color: #fdfdfd; font-style: italic; }
+/* --- GLASSMORPHISM CARDS --- */
+.luxury-card { 
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(15px); 
+    border: 1px solid rgba(212, 175, 55, 0.2); 
+    border-radius: 20px; padding: 35px 20px; max-width: 700px; margin: 0 auto; text-align: center;
+}
+
+.action-btn { text-decoration: none; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+
+/* --- SCROLL ANIMATION --- */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }
 
 .gallery-section { padding: 40px 10px; background: #000; text-align: center; }
-.gallery-section h2 { color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 28px; letter-spacing: 2px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
 .gallery-grid img { width: 100%; height: 320px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); }
 
-section { padding: 50px 20px; }
-.luxury-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 35px 20px; max-width: 700px; margin: 0 auto; text-align: center; }
-
-.action-btn { text-decoration: none; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
-.action-btn:active { transform: scale(0.95); }
-
 .wishes-display { margin-top: 30px; text-align: left; max-height: 380px; overflow-y: auto; padding-right: 8px; }
 .wish-bubble { background: rgba(212,175,55,0.08); padding: 18px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--gold); position: relative; }
-.wish-bubble strong { color: var(--gold); font-size: 15px; }
-.wish-bubble p { font-size: 14px; margin-top: 6px; color: #eee; }
 .delete-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 12px; }
 
 input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 10px; color: #fff; outline: none; }
@@ -68,6 +93,16 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
 </head>
 
 <body onclick="playMusicOnFirstClick()">
+
+<div id="intro-overlay">
+    <video id="intro-video" autoplay muted loop playsinline>
+        <source src="http://googleusercontent.com/generated_video_content/10126851600051545197" type="video/mp4">
+    </video>
+    <div class="intro-text">
+        <h2>Save The Date</h2>
+        <h1>Subash & Deepika</h1>
+    </div>
+</div>
 
 <audio id="weddingMusic" loop><source src="wedding-music.mp3" type="audio/mpeg"></audio>
 <button class="music-btn" id="musicBtn" onclick="event.stopPropagation(); toggleMusic();">🎵 Play Music</button>
@@ -81,7 +116,6 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
   </div>
 
   <div class="countdown-container">
-    <p style="margin-bottom: 12px; font-size: 12px; letter-spacing: 3px; color: rgba(255,255,255,0.8);">COUNTDOWN TO OUR BIG DAY</p>
     <div class="countdown-wrap">
       <div class="count-box"><span id="days">00</span><label>Days</label></div>
       <div class="count-box"><span id="hours">00</span><label>Hours</label></div>
@@ -91,20 +125,20 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
   </div>
 </header>
 
-<div class="invite-note">
-    <h2>You Are Cordially Invited</h2>
-    <p>"Together with our families, we joyfully invite you to celebrate our wedding. Your love and presence on our special day would mean the world to us as we begin our journey together."</p>
+<div class="invite-note reveal">
+    <h2 style="color: var(--gold); font-size: 30px; margin-bottom: 20px; font-family: 'Playfair Display', serif;">You Are Cordially Invited</h2>
+    <p style="font-size: 19px; line-height: 1.8; font-style: italic;">"Together with our families, we joyfully invite you to celebrate our wedding. Your love and presence on our special day would mean the world to us as we begin our journey together."</p>
 </div>
 
-<div class="gallery-section">
-    <h2>Captured Moments</h2>
+<div class="gallery-section reveal">
+    <h2 style="color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 28px;">Captured Moments</h2>
     <div class="gallery-grid">
       <img src="photo1.jpg"><img src="photo2.jpg"><img src="photo3.jpg"><img src="photo4.jpg">
       <img src="photo5.jpg"><img src="photo6.jpg"><img src="photo7.jpg"><img src="photo8.jpg">
     </div>
 </div>
 
-<section>
+<section class="reveal">
   <div class="luxury-card">
     <h2 style="color: var(--gold); margin-bottom: 15px; font-family: 'Playfair Display', serif;">The Celebration Venue</h2>
     <p style="font-size: 19px; font-weight: 600; color: #fff;">Hindu Nadar Sanga Thirumana Auditorium</p>
@@ -112,19 +146,15 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
     <p style="color: gold; font-weight: bold; margin-bottom: 25px;">Muhurtham: 9:00 AM - 10:30 AM</p>
 
     <div style="display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://www.google.com/maps/dir/?api=1&destination=8.639761,77.980015" target="_blank" class="action-btn" style="background: #25d366;">
-        📍 Navigate to Venue
-      </a>
-      <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Subash+%26+Deepika+Wedding&dates=20260316T090000/20260316T130000&details=Bless+the+couple+on+their+special+day!&location=Hindu+Nadar+Sanga+Thirumana+Auditorium,+Sivagalai" target="_blank" class="action-btn" style="background: #4285f4;">
-        📅 Add to Calendar
-      </a>
+      <a href="https://maps.google.com/?cid=11099997350259150042&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="action-btn" style="background: #25d366;">📍 Navigate to Venue</a>
+      <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Subash+%26+Deepika+Wedding&dates=20260316T090000/20260316T130000&details=Bless+the+couple+on+their+special+day!&location=Hindu+Nadar+Sanga+Thirumana+Auditorium,+Sivagalai" target="_blank" class="action-btn" style="background: #4285f4;">📅 Add to Calendar</a>
     </div>
 
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.3218968434316!2d77.9778263748366!3d8.639766391406606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b038b2ea94d6885%3A0x9a0bd99c9df94cda!2sHindu%20Nadar%20Auditorium!5e0!3m2!1sen!2sin!4v1715600000000!5m2!1sen!2sin" width="100%" height="300" style="border-radius:15px; border:1px solid rgba(212,175,55,0.3);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/dir/?api=1&destination=8.639761,77.980015" width="100%" height="280" style="border-radius:15px; border:1px solid rgba(212,175,55,0.3);" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
-<section>
+<section class="reveal">
   <div class="luxury-card">
     <h2 style="color: var(--gold); margin-bottom: 25px; font-family: 'Playfair Display', serif;">Send Your Blessings</h2>
     <input type="text" id="nameInput" placeholder="Your Full Name">
@@ -139,6 +169,26 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
 </footer>
 
 <script>
+// INTRO VIDEO DELAY
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const overlay = document.getElementById('intro-overlay');
+        overlay.style.opacity = '0';
+        setTimeout(() => overlay.style.visibility = 'hidden', 1500);
+    }, 5000); // 5 seconds cinematic intro
+});
+
+// SCROLL REVEAL
+function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        if (elementTop < windowHeight - 100) { reveals[i].classList.add("active"); }
+    }
+}
+window.addEventListener("scroll", reveal);
+
 const firebaseConfig = { databaseURL: "https://subashdeepikawedding-ebbd3-default-rtdb.firebaseio.com/" };
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
@@ -163,27 +213,18 @@ function saveWish() {
         });
     }
 }
-
 database.ref('wishes').on('value', (snap) => {
     const area = document.getElementById('wishesDisplay'); area.innerHTML = "";
     const data = snap.val();
-    if (data) {
-        Object.keys(data).reverse().forEach(k => {
-            const div = document.createElement('div');
-            div.className = 'wish-bubble';
-            div.innerHTML = `<strong>${data[k].name}</strong><p>${data[k].wish}</p><button class="delete-btn" onclick="deleteWish('${k}')">✕</button>`;
-            area.appendChild(div);
-        });
-    }
+    if (data) Object.keys(data).reverse().forEach(k => {
+        const div = document.createElement('div');
+        div.className = 'wish-bubble';
+        div.innerHTML = `<strong>${data[k].name}</strong><p>${data[k].wish}</p><button class="delete-btn" onclick="deleteWish('${k}')">✕</button>`;
+        area.appendChild(div);
+    });
 });
-
 function deleteWish(key) {
-    const pwd = prompt("Enter Password to Delete:");
-    if (pwd === "1234") {
-        database.ref('wishes/' + key).remove();
-    } else {
-        alert("Wrong Password!");
-    }
+    if (prompt("Enter Password to Delete:") === "1234") { database.ref('wishes/' + key).remove(); }
 }
 
 var audio = document.getElementById('weddingMusic');
