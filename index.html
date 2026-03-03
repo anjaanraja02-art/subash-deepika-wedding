@@ -50,6 +50,11 @@ header::after {
 
 section { padding: 50px 20px; }
 .luxury-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 35px 20px; max-width: 700px; margin: 0 auto; text-align: center; }
+
+/* பட்டன் ஸ்டைல்ஸ் */
+.action-btn { text-decoration: none; color: white; padding: 10px 15px; border-radius: 8px; font-size: 13px; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+.action-btn:active { transform: scale(0.95); }
+
 .wishes-display { margin-top: 30px; text-align: left; max-height: 380px; overflow-y: auto; padding-right: 8px; }
 .wish-bubble { background: rgba(212,175,55,0.08); padding: 18px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--gold); position: relative; }
 .wish-bubble strong { color: var(--gold); font-size: 15px; }
@@ -106,7 +111,17 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
     <p style="font-size: 19px; font-weight: 600; color: #fff;">Hindu Nadar Sanga Thirumana Mandapam</p>
     <p style="font-size: 15px; opacity: 0.8; margin-bottom: 5px;">Sivagalai, Tuticorin District, Tamil Nadu.</p>
     <p style="color: gold; font-weight: bold; margin-bottom: 25px;">Muhurtham: 9:00 AM - 10:30 AM</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15767.123456789!2d77.9423!3d8.6185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f05f55555555%3A0x5555555555555555!2sSivagalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1709500000000!5m2!1sen!2sin" width="100%" height="250" style="border-radius:15px; border:1px solid rgba(212,175,55,0.3);" allowfullscreen="" loading="lazy"></iframe>
+
+    <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; flex-wrap: wrap;">
+      <a href="https://www.google.com/maps/dir/?api=1&destination=Hindu+Nadar+Sanga+Thirumana+Mandapam+Sivagalai" target="_blank" class="action-btn" style="background: #25d366;">
+        📍 Navigate to Venue
+      </a>
+      <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Subash+%26+Deepika+Wedding&dates=20260316T090000/20260316T130000&details=Bless+the+couple+on+their+special+day!&location=Hindu+Nadar+Sanga+Thirumana+Mandapam,+Sivagalai" target="_blank" class="action-btn" style="background: #4285f4;">
+        📅 Add to Calendar
+      </a>
+    </div>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15767.143719114112!2d77.9626999!3d8.9032608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f008855e9707%3A0xf67f920216f9f67e!2sSivagalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1709400000000!5m2!1sen!2sin" width="100%" height="250" style="border-radius:15px; border:1px solid rgba(212,175,55,0.3);" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
@@ -144,7 +159,6 @@ function saveWish() {
     const wish = document.getElementById('wishInput').value;
     if (name.trim() && wish.trim()) {
         database.ref('wishes').push().set({ name, wish }).then(() => {
-            //
             window.open(`https://wa.me/919629377101?text=${encodeURIComponent(name + " wishes: " + wish)}`);
             document.getElementById('nameInput').value = ""; document.getElementById('wishInput').value = "";
         });
@@ -166,7 +180,7 @@ database.ref('wishes').on('value', (snap) => {
 
 function deleteWish(key) {
     const pwd = prompt("Enter Password to Delete:");
-    if (pwd === "1234") { //
+    if (pwd === "1234") {
         database.ref('wishes/' + key).remove();
     } else {
         alert("Wrong Password!");
