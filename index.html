@@ -1,123 +1,142 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Subash ❤️ Deepika | Royal Wedding</title>
+<title>Subash ❤️ Deepika | The Royal Union</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
+:root {
+  --gold: #D4AF37;
+  --dark-gold: #996515;
+  --glass: rgba(0, 0, 0, 0.6);
+}
+
 *{margin:0;padding:0;box-sizing:border-box;}
-body{font-family:'Poppins',sans-serif;background:#000;color:#fff;scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;background:#050505;color:#fff;scroll-behavior:smooth; overflow-x: hidden;}
 
-section{padding:80px 20px;text-align:center;}
-h2{font-family:'Playfair Display',serif;color:gold;font-size:38px;margin-bottom:20px;}
-.divider{width:100px;height:3px;background:gold;margin:20px auto;}
-
+/* --- Header Section (Adjusted to prevent face cut) --- */
 header{
 height:100vh;
-/* Background Photo Path Corrected */
-background:url('photo1.jpg') center/cover no-repeat;
+/* Photo path corrected & Parallax enabled */
+background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('photo1.jpg') no-repeat fixed;
+background-size: cover;
+
+/* மணமகனின் முகம் தெரிய இந்த ஒரு வரி முக்கியம் */
+background-position: center 15%; 
+
 display:flex;justify-content:center;align-items:center;
 text-align:center;
 position:relative;
 }
+
 header::after{
 content:"";
 position:absolute;top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.2);
 }
-.hero-content{
-position:relative;z-index:2;
-}
-.hero-content h1{
-font-size:48px;color:gold;text-shadow:0 0 20px gold;
-}
-.hero-content p{margin-top:15px;font-size:20px;}
 
+.hero-content{
+z-index:2;
+padding: 20px;
+animation: fadeInUp 2.2s ease-out;
+}
+
+.trending-quote {
+font-family: 'Great Vibes', cursive;
+font-size: 30px;
+color: var(--gold);
+margin-bottom: 8px;
+text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.hero-content h1{
+font-family: 'Playfair Display', serif;
+font-size: clamp(35px, 8vw, 65px);
+background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
+margin-bottom: 10px;
+}
+
+.date-hero {
+font-size: 18px;
+letter-spacing: 3px;
+text-transform: uppercase;
+border-top: 1px solid var(--gold);
+border-bottom: 1px solid var(--gold);
+display: inline-block;
+padding: 5px 20px;
+margin-top: 10px;
+background: rgba(0,0,0,0.4);
+}
+
+/* --- Content Sections --- */
+section{padding:80px 20px; text-align:center;}
+h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:38px; margin-bottom:10px;}
+.divider{width:60px; height:2px; background:var(--gold); margin:20px auto 30px;}
+
+.glass-card {
+background: var(--glass);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+border: 1px solid rgba(212, 175, 55, 0.3);
+border-radius: 20px;
+padding: 35px;
+max-width: 650px;
+margin: 0 auto;
+box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* --- Gallery Grid --- */
 .gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
+gap:15px;
+max-width: 1100px;
+margin: 0 auto;
 }
 .gallery img{
-width:100%;
-height:300px;
-object-fit:cover;
-border-radius:15px;
-cursor:pointer;
-transition:0.4s;
+width:100%; height:320px; object-fit:cover;
+border-radius:12px; cursor:pointer;
+transition: 0.5s ease;
 }
 .gallery img:hover{
-transform:scale(1.05);
-box-shadow:0 0 20px gold;
+transform: scale(1.03);
+box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
 }
 
-/* Lightbox */
-#lightbox{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.9);
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-#lightbox img{
-max-width:90%;
-max-height:90%;
-border-radius:15px;
-}
-
-.card{
-background:rgba(255,215,0,0.1);
-border:1px solid gold;
-padding:25px;
-margin:20px auto;
-max-width:600px;
-border-radius:15px;
-}
-
-input,textarea{
-width:100%;
-padding:12px;
-margin-bottom:15px;
-border:none;
-border-radius:8px;
-}
-
-button{
-padding:10px 20px;
-background:gold;
-border:none;
-border-radius:20px;
-font-weight:bold;
-cursor:pointer;
-}
-
-footer{
-background:#111;
-padding:30px;
-color:gold;
-text-align:center;
-}
-
-/* Play Button Style */
+/* --- UI Elements --- */
 .music-btn {
-position: fixed; 
-bottom: 20px; 
-left: 20px; 
-z-index: 1000;
-background: #ff4d4d; 
-color: white; 
-border: none; 
-padding: 12px 25px; 
-border-radius: 30px; 
-font-weight: bold; 
-cursor: pointer; 
-box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+position: fixed; bottom: 25px; left: 20px; z-index: 1000;
+background: #ff4d4d;
+color: #fff; border: none; padding: 10px 20px;
+border-radius: 30px; font-weight: 600; cursor: pointer;
+box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+display: flex; align-items: center; gap: 8px;
+font-size: 14px;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer{ padding:40px; background:#000; color:var(--gold); letter-spacing: 2px; text-align: center;}
+
+#lightbox{
+position:fixed; top:0; left:0; width:100%; height:100%;
+background:rgba(0,0,0,0.9); display:none; justify-content:center; align-items:center; z-index:9999;
+}
+#lightbox img{ max-width:90%; max-height:85%; border-radius: 10px; }
+
+input, textarea {
+width: 100%; padding: 12px; margin-bottom: 15px;
+background: rgba(255,255,255,0.1); border: 1px solid var(--gold);
+border-radius: 8px; color: #fff;
 }
 </style>
 </head>
@@ -128,94 +147,88 @@ box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   <source src="wedding-music.mp3" type="audio/mpeg">
 </audio>
 
-<button class="music-btn" id="musicToggle" onclick="toggleMusic()">
-  🎵 Play Music
+<button class="music-btn" onclick="toggleMusic()">
+  <span id="musicIcon">🎵</span> <span id="btnText">Play Music</span>
 </button>
 
 <header>
 <div class="hero-content">
-<h1>P. Subash Raja ❤️ S. Deepika</h1>
-<p>16 March 2026 | 9:30 AM – 10:30 AM</p>
+  <div class="trending-quote">"Two Hearts, One Soul... A Journey of Love Begins!"</div>
+  <h1>Subash & Deepika</h1>
+  <div class="date-hero">March 16 • 2026</div>
 </div>
 </header>
 
 <section>
-<h2>Wedding Ceremony</h2>
-<div class="divider"></div>
-<p><b>Date:</b> 16 March 2026</p>
-<p><b>Venue:</b> Hindu Nadar Sanga Thirumana Mandapam</p>
-<p>Sivagalai – Tuticorin District</p>
-<br>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.444458319693!2d77.965833!3d8.975!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f90500000001%3A0x6b49e6f6f6f6f6f6!2sSivagalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000"
-width="100%" height="300" style="border-radius:15px; border:0;" allowfullscreen="" loading="lazy"></iframe>
+  <div class="glass-card">
+    <h2>The Wedding</h2>
+    <div class="divider"></div>
+    <p style="font-size: 18px; margin-bottom: 15px;">We request the honor of your presence at the marriage of our children.</p>
+    <p style="color: var(--gold); font-weight: 600; font-size: 20px;">Hindu Nadar Sanga Thirumana Mandapam</p>
+    <p>Sivagalai – Tuticorin District</p>
+    <br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.756149866236!2d77.962534575014!3d8.619375191427103!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f0d4b85c1847%3A0x6a2b8e390c50005d!2sSivagalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1709490000000!5m2!1sen!2sin" 
+    width="100%" height="300" style="border-radius:15px; border:0;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
 </section>
 
-<section>
-<h2>Our Beautiful Moments</h2>
+<section id="gallery">
+<h2>Captured Moments</h2>
 <div class="divider"></div>
-
 <div class="gallery">
-<img src="photo1.jpg" onclick="openLightbox(this.src)">
-<img src="photo2.jpg" onclick="openLightbox(this.src)">
-<img src="photo3.jpg" onclick="openLightbox(this.src)">
-<img src="photo4.jpg" onclick="openLightbox(this.src)">
-<img src="photo5.jpg" onclick="openLightbox(this.src)">
-<img src="photo6.jpg" onclick="openLightbox(this.src)">
-<img src="photo7.jpg" onclick="openLightbox(this.src)">
-<img src="photo8.jpg" onclick="openLightbox(this.src)">
-<img src="photo9.jpg" onclick="openLightbox(this.src)">
-<img src="photo10.jpg" onclick="openLightbox(this.src)">
+  <img src="photo1.jpg" onclick="openLightbox(this.src)">
+  <img src="photo2.jpg" onclick="openLightbox(this.src)">
+  <img src="photo3.jpg" onclick="openLightbox(this.src)">
+  <img src="photo4.jpg" onclick="openLightbox(this.src)">
+  <img src="photo5.jpg" onclick="openLightbox(this.src)">
+  <img src="photo6.jpg" onclick="openLightbox(this.src)">
+  <img src="photo7.jpg" onclick="openLightbox(this.src)">
+  <img src="photo8.jpg" onclick="openLightbox(this.src)">
+  <img src="photo9.jpg" onclick="openLightbox(this.src)">
+  <img src="photo10.jpg" onclick="openLightbox(this.src)">
 </div>
-
 </section>
 
 <section>
-<h2>Send Your Wishes</h2>
+<h2>Bless the Couple</h2>
 <div class="divider"></div>
-
-<div class="card">
-<input placeholder="Your Name">
-<textarea placeholder="Your Wishes"></textarea>
-<button>Submit</button>
-</div>
-
-<div class="card">
-<button onclick="share()">Share on WhatsApp</button>
+<div class="glass-card">
+  <input type="text" placeholder="Your Name">
+  <textarea placeholder="Your Warm Wishes"></textarea>
+  <button style="width: 100%; background: var(--gold); color: #000; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer;">Send Wishes</button>
+  
+  <div style="margin-top: 25px;">
+    <button onclick="share()" style="background: #25D366; color: #fff; width: 100%; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">
+      Share on WhatsApp
+    </button>
+  </div>
 </div>
 </section>
 
 <footer>
-With Divine Blessings 🙏<br>
-Subash Raja ❤️ Deepika
+  WITH DIVINE BLESSINGS 🙏<br>
+  <span style="font-size: 20px; margin-top: 10px; display: block; color: var(--gold);">SUBASH ❤️ DEEPIKA</span>
 </footer>
 
-<div id="lightbox" onclick="closeLightbox()">
-<img id="lightboxImg">
-</div>
+<div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"></div>
 
 <script>
-function openLightbox(src){
-document.getElementById("lightbox").style.display="flex";
-document.getElementById("lightboxImg").src=src;
-}
-function closeLightbox(){
-document.getElementById("lightbox").style.display="none";
-}
-function share(){
-var url=window.location.href;
-window.open("https://wa.me/?text="+encodeURIComponent("Join Subash ❤️ Deepika Wedding 💍 "+url));
-}
+function openLightbox(src){ document.getElementById("lightbox").style.display="flex"; document.getElementById("lightboxImg").src=src; }
+function closeLightbox(){ document.getElementById("lightbox").style.display="none"; }
+function share(){ window.open("https://wa.me/?text="+encodeURIComponent("Wedding Invitation: Subash & Deepika 💍 "+window.location.href)); }
 
-// Music Function
 function toggleMusic() {
   var audio = document.getElementById('weddingMusic');
-  var btn = document.getElementById('musicToggle');
+  var btnText = document.getElementById('btnText');
+  var icon = document.getElementById('musicIcon');
   if (audio.paused) {
     audio.play();
-    btn.innerHTML = '⏸ Stop Music';
+    btnText.innerHTML = 'Stop Music';
+    icon.innerHTML = '⏸';
   } else {
     audio.pause();
-    btn.innerHTML = '🎵 Play Music';
+    btnText.innerHTML = 'Play Music';
+    icon.innerHTML = '🎵';
   }
 }
 </script>
