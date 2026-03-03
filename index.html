@@ -15,7 +15,6 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif; background: var(--bg); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- HEADER SECTION --- */
 header{
     height: 100vh; width: 100%; position: relative;
     display: flex; flex-direction: column; justify-content: space-between; 
@@ -44,19 +43,18 @@ header::after {
 .invite-note h2 { color: var(--gold); font-size: 30px; margin-bottom: 20px; letter-spacing: 2px; }
 .invite-note p { font-size: 19px; line-height: 1.8; color: #fdfdfd; font-style: italic; }
 
-/* --- GALLERY SECTION --- */
 .gallery-section { padding: 40px 10px; background: #000; text-align: center; }
 .gallery-section h2 { color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 28px; letter-spacing: 2px; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
 .gallery-grid img { width: 100%; height: 320px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); }
 
-/* --- WISHES & VENUE CARDS --- */
 section { padding: 50px 20px; }
 .luxury-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.25); border-radius: 20px; padding: 35px 20px; max-width: 700px; margin: 0 auto; text-align: center; }
 .wishes-display { margin-top: 30px; text-align: left; max-height: 380px; overflow-y: auto; padding-right: 8px; }
 .wish-bubble { background: rgba(212,175,55,0.08); padding: 18px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--gold); position: relative; }
 .wish-bubble strong { color: var(--gold); font-size: 15px; }
 .wish-bubble p { font-size: 14px; margin-top: 6px; color: #eee; }
+.delete-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 12px; }
 
 input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 10px; color: #fff; outline: none; }
 .btn-gold { width: 100%; background: linear-gradient(45deg, #BF953F, #FCF6BA); color: #000; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; border: none; font-size: 16px; }
@@ -146,19 +144,34 @@ function saveWish() {
     const wish = document.getElementById('wishInput').value;
     if (name.trim() && wish.trim()) {
         database.ref('wishes').push().set({ name, wish }).then(() => {
-            // WhatsApp Message (9629377101)
+            //
             window.open(`https://wa.me/919629377101?text=${encodeURIComponent(name + " wishes: " + wish)}`);
             document.getElementById('nameInput').value = ""; document.getElementById('wishInput').value = "";
         });
     }
 }
+
 database.ref('wishes').on('value', (snap) => {
     const area = document.getElementById('wishesDisplay'); area.innerHTML = "";
     const data = snap.val();
-    if (data) Object.keys(data).reverse().forEach(k => {
-        area.innerHTML += `<div class="wish-bubble"><strong>${data[k].name}</strong><p>${data[k].wish}</p></div>`;
-    });
+    if (data) {
+        Object.keys(data).reverse().forEach(k => {
+            const div = document.createElement('div');
+            div.className = 'wish-bubble';
+            div.innerHTML = `<strong>${data[k].name}</strong><p>${data[k].wish}</p><button class="delete-btn" onclick="deleteWish('${k}')">✕</button>`;
+            area.appendChild(div);
+        });
+    }
 });
+
+function deleteWish(key) {
+    const pwd = prompt("Enter Password to Delete:");
+    if (pwd === "1234") { //
+        database.ref('wishes/' + key).remove();
+    } else {
+        alert("Wrong Password!");
+    }
+}
 
 var audio = document.getElementById('weddingMusic');
 function playMusicOnFirstClick() { audio.play(); }
