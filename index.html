@@ -8,18 +8,18 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
 <style>
-:root { --gold: #D4AF37; --bg: #1a0202; } /* Royal Maroon & Gold Theme */
+:root { --gold: #D4AF37; --bg: #1a0202; }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif; background: var(--bg); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- HEADER: FACE CUT FIXED --- */
+/* --- HEADER FIX --- */
 header{
     height: 100vh; width: 100%; position: relative;
-    display: flex; justify-content: center; align-items: flex-start; 
-    padding-top: 8vh; text-align: center; /* பெயர்கள் இன்னும் மேலே நகர்த்தப்பட்டுள்ளது */
+    display: flex; flex-direction: column; justify-content: space-between; 
+    align-items: center; padding: 10vh 0 10vh 0; text-align: center;
 }
 .main-bg {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -27,157 +27,135 @@ header{
 }
 header::after {
     content: ""; position: absolute; top:0; left:0; width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(26,2,2,0.5) 0%, rgba(26,2,2,0.2) 40%, rgba(26,2,2,0.95) 100%);
+    background: linear-gradient(to bottom, rgba(26,2,2,0.6) 0%, rgba(26,2,2,0) 40%, rgba(26,2,2,0) 70%, rgba(26,2,2,0.95) 100%);
     z-index: 2;
 }
-@media (max-width: 768px) { .main-bg { background-position: center 15%; } }
 
-.hero-content{ z-index: 10; animation: fadeIn 2s ease-in-out; }
-.hero-content h1{ font-family: 'Playfair Display', serif; font-size: clamp(34px, 10vw, 65px); color: var(--gold); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
-.wedding-date { font-size: 16px; color: gold; letter-spacing: 3px; border-top: 1px solid gold; border-bottom: 1px solid gold; display: inline-block; padding: 5px 15px; margin-top: 10px; font-weight: bold; }
+.hero-content { z-index: 10; position: relative; }
+.hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 10vw, 65px); color: var(--gold); text-shadow: 2px 2px 15px rgba(0,0,0,0.9); }
 
-/* --- LUXURY CARDS --- */
-section{padding:60px 20px; text-align:center;}
-.luxury-card {
-    background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
-    border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 25px;
-    padding: 40px 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+/* --- COUNTDOWN NEAR LEGS (BOTTOM AREA) --- */
+.countdown-container { 
+    z-index: 10; position: relative; 
+    margin-bottom: 5vh; /* Ponnu maplai leg pakkathil varuvatharku */
 }
+.countdown-wrap { display: flex; gap: 10px; justify-content: center; }
+.count-box { 
+    background: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(8px); 
+    border: 1px solid var(--gold); 
+    padding: 10px; border-radius: 12px; min-width: 65px; 
+}
+.count-box span { display: block; font-size: 22px; font-weight: bold; color: var(--gold); }
+.count-box label { font-size: 9px; text-transform: uppercase; color: #eee; }
 
-/* WISHES DISPLAY AREA (REAL-TIME) */
-.wishes-container { margin-top: 30px; text-align: left; max-height: 400px; overflow-y: auto; padding: 10px; }
-.wish-bubble { background: rgba(212, 175, 55, 0.1); padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--gold); position: relative; animation: slideUp 0.5s ease-out; }
-.wish-bubble strong { color: var(--gold); display: block; margin-bottom: 5px; font-size: 14px; }
-.delete-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: rgba(255,255,255,0.3); cursor: pointer; font-size: 10px; }
+/* GALLERY SECTION */
+.gallery-section { padding: 40px 15px; background: #000; }
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; max-width: 1100px; margin: 0 auto; }
+.gallery-grid img { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; border: 1px solid rgba(212,175,55,0.2); }
 
-input, textarea { width: 100%; padding: 15px; margin-bottom: 15px; background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 12px; color: #fff; outline: none; }
-.btn-gold { width: 100%; background: linear-gradient(45deg, #BF953F, #FCF6BA); color: #000; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; border: none; font-size: 16px; transition: 0.3s; }
-.btn-gold:hover { transform: scale(1.02); }
-
-.music-btn { position: fixed; bottom: 25px; left: 20px; z-index: 1000; background: var(--gold); color: #000; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+section { padding: 50px 20px; text-align: center; }
+.luxury-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 25px; padding: 40px 20px; max-width: 750px; margin: 0 auto; }
+.btn-gold { width: 100%; background: linear-gradient(45deg, #BF953F, #FCF6BA); color: #000; padding: 15px; border-radius: 12px; font-weight: bold; cursor: pointer; border: none; margin-top: 10px; }
+.music-btn { position: fixed; bottom: 25px; left: 20px; z-index: 1000; background: var(--gold); color: #000; border: none; padding: 10px 20px; border-radius: 30px; font-weight: bold; }
 </style>
 </head>
 
 <body onclick="playMusicOnFirstClick()">
 
 <audio id="weddingMusic" loop><source src="wedding-music.mp3" type="audio/mpeg"></audio>
-<button class="music-btn" id="musicBtn" onclick="event.stopPropagation(); toggleMusic();"><span id="musicIcon">🎵</span> <span id="btnText">Play Music</span></button>
+<button class="music-btn" id="musicBtn" onclick="event.stopPropagation(); toggleMusic();">🎵 Music</button>
 
 <header>
   <div class="main-bg"></div>
   <div class="hero-content">
-    <p style="font-family: 'Great Vibes', cursive; font-size: clamp(24px, 5vw, 32px); color: var(--gold);">A Match Made in Heaven...</p>
+    <p style="font-family: 'Great Vibes', cursive; font-size: 28px; color: var(--gold);">Save The Date</p>
     <h1>Subash & Deepika</h1>
-    <div class="wedding-date">MARCH 16 • 2026</div>
+    <p style="letter-spacing: 3px; font-weight: bold; color: #fff;">16.03.2026</p>
+  </div>
+
+  <div class="countdown-container">
+    <p style="margin-bottom: 8px; font-size: 12px; letter-spacing: 2px; text-shadow: 1px 1px 5px #000;">THE BIG DAY IN...</p>
+    <div class="countdown-wrap">
+      <div class="count-box"><span id="days">00</span><label>Days</label></div>
+      <div class="count-box"><span id="hours">00</span><label>Hours</label></div>
+      <div class="count-box"><span id="mins">00</span><label>Mins</label></div>
+      <div class="count-box"><span id="secs">00</span><label>Secs</label></div>
+    </div>
   </div>
 </header>
 
-<section>
-  <div class="luxury-card">
-    <h2 style="color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 20px; font-size: 32px;">Wedding Venue</h2>
-    <div style="width: 50px; height: 2px; background: var(--gold); margin: 0 auto 20px;"></div>
-    <p style="font-size: 20px; font-weight: 600; color: #fff;">Hindu Nadar Sanga Thirumana Mandapam</p>
-    <p style="margin-bottom: 25px; opacity: 0.9;">Sivagalai, Tuticorin District, Tamil Nadu.</p>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.719717551066!2d77.94273527581515!3d8.526514796365457!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f021e141a02b%3A0xc3c942861e687836!2sHindu%20Nadar%20Mahimai%20Sangam!5e0!3m2!1sen!2sin!4v1711200000000!5m2!1sen!2sin" width="100%" height="300" style="border-radius:15px; border:1px solid var(--gold);" allowfullscreen="" loading="lazy"></iframe>
-  </div>
-</section>
-
-<section id="gallery">
-    <h2 style="color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 30px; font-size: 32px;">Captured Moments</h2>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:15px;">
-      <img src="photo1.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo2.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo3.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo4.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo5.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo6.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo7.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo8.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo9.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
-      <img src="photo10.jpg" style="width:100%; height:350px; object-fit:cover; border-radius:15px; border:1px solid rgba(212,175,55,0.3);">
+<div class="gallery-section">
+    <div class="gallery-grid">
+      <img src="photo1.jpg">
+      <img src="photo2.jpg">
+      <img src="photo3.jpg">
+      <img src="photo4.jpg">
+      <img src="photo5.jpg">
+      <img src="photo6.jpg">
+      <img src="photo7.jpg">
+      <img src="photo8.jpg">
+      <img src="photo9.jpg">
+      <img src="photo10.jpg">
     </div>
-</section>
+</div>
 
 <section>
   <div class="luxury-card">
-    <h2 style="color: var(--gold); font-family: 'Playfair Display', serif; margin-bottom: 20px; font-size: 32px;">Bless the Couple</h2>
-    <input type="text" id="nameInput" placeholder="Your Name">
-    <textarea id="wishInput" placeholder="Write your warm wishes here..." rows="4"></textarea>
-    <button class="btn-gold" onclick="saveWish()">Send Wishes & WhatsApp</button>
-    
-    <div id="wishesDisplay" class="wishes-container">
-      <p style="text-align: center; opacity: 0.5;">Loading wishes...</p>
-    </div>
+    <h2 style="color: var(--gold); margin-bottom: 20px;">Venue</h2>
+    <p style="font-size: 18px; font-weight: 600;">Hindu Nadar Sanga Thirumana Mandapam</p>
+    <p style="margin-bottom: 20px; opacity: 0.8;">Sivagalai, Tuticorin.</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.31304561726!2d77.9472643!3d8.5658603!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f0ecf69666c3%3A0x6d2c4b8b603845b4!2sHindu%20Nadar%20Sangam%20Marriage%20Hall!5e0!3m2!1sen!2sin!4v1700000000000" width="100%" height="250" style="border-radius:15px; border:1px solid gold;"></iframe>
   </div>
 </section>
 
-<footer style="padding:80px 20px; text-align:center; background:#0a0101;">
-  <p style="opacity: 0.6; letter-spacing: 2px; margin-bottom: 10px;">WITH DIVINE BLESSINGS</p>
-  <span style="font-size: 38px; color: var(--gold); font-family: 'Great Vibes', cursive;">Subash ❤️ Deepika</span>
-</footer>
+<section>
+  <div class="luxury-card">
+    <h2 style="color: var(--gold); margin-bottom: 20px;">Wishes</h2>
+    <input type="text" id="nameInput" placeholder="Name">
+    <textarea id="wishInput" placeholder="Wishes..." rows="3"></textarea>
+    <button class="btn-gold" onclick="saveWish()">Bless Us</button>
+    <div id="wishesDisplay" style="text-align: left; margin-top: 20px;"></div>
+  </div>
+</section>
 
 <script>
-// --- FIREBASE CONFIGURATION (Verified for subashdeepikawedding-ebbd3) ---
-const firebaseConfig = {
-  databaseURL: "https://subashdeepikawedding-ebbd3-default-rtdb.firebaseio.com/"
-};
+const firebaseConfig = { databaseURL: "https://subashdeepikawedding-ebbd3-default-rtdb.firebaseio.com/" };
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
-// மியூசிக் கண்ட்ரோல் - ஒருமுறை தொட்டாலே ஓடும்
-var audio = document.getElementById('weddingMusic'); 
-var hasPlayed = false;
-function playMusicOnFirstClick() { if (!hasPlayed) { audio.play(); hasPlayed = true; document.getElementById('btnText').innerText = 'Stop Music'; document.getElementById('musicIcon').innerText = '⏸'; } }
-function toggleMusic() { 
-  if (audio.paused) { audio.play(); document.getElementById('btnText').innerText = 'Stop Music'; document.getElementById('musicIcon').innerText = '⏸'; } 
-  else { audio.pause(); document.getElementById('btnText').innerText = 'Play Music'; document.getElementById('musicIcon').innerText = '🎵'; } 
-}
+// Real-time Countdown
+const weddingDate = new Date("March 16, 2026 09:00:00").getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+    document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+}, 1000);
 
-// வாழ்த்துக்களைச் சேமிக்க மற்றும் வாட்ஸ்அப் அனுப்ப
 function saveWish() {
     const name = document.getElementById('nameInput').value;
     const wish = document.getElementById('wishInput').value;
-    if (name === "" || wish === "") { alert("Please enter Name and Wish!"); return; }
-    
-    database.ref('wishes').push().set({ name: name, wish: wish }).then(() => {
-        // WhatsApp-க்கு அனுப்புதல் (9629377101)
-        window.open(`https://wa.me/919629377101?text=${encodeURIComponent("Wedding Wish from " + name + ": " + wish)}`);
-        document.getElementById('nameInput').value = ""; 
-        document.getElementById('wishInput').value = "";
-    });
-}
-
-// வாழ்த்துக்களைக் காட்ட மற்றும் பாஸ்வேர்ட் மூலம் நீக்க
-database.ref('wishes').on('value', (snapshot) => {
-    const area = document.getElementById('wishesDisplay'); 
-    area.innerHTML = "";
-    const data = snapshot.val();
-    if (data) {
-        Object.keys(data).reverse().forEach(key => {
-            const item = data[key];
-            const div = document.createElement('div');
-            div.className = 'wish-bubble';
-            div.innerHTML = `<strong>${item.name}</strong><p>${item.wish}</p><button class="delete-btn" onclick="deleteWish('${key}')">✕ Delete</button>`;
-            area.appendChild(div);
+    if (name && wish) {
+        database.ref('wishes').push().set({ name, wish }).then(() => {
+            window.open(`https://wa.me/919629377101?text=${encodeURIComponent(name + ": " + wish)}`);
+            document.getElementById('nameInput').value = ""; document.getElementById('wishInput').value = "";
         });
-    } else { area.innerHTML = "<p style='opacity:0.5; text-align:center;'>No wishes yet. Be the first to wish!</p>"; }
-});
-
-// அட்மின் பாஸ்வேர்ட் மூலம் மெசேஜை நீக்குதல் (Password: 1234)
-function deleteWish(key) {
-    const pwd = prompt("Enter Admin Password to delete this wish:");
-    if (pwd === "1234") { 
-        database.ref('wishes/' + key).remove()
-        .then(() => alert("Wish deleted permanently!"))
-        .catch((e) => alert("Error: " + e));
-    } else if (pwd !== null) { 
-        alert("Wrong Password! Access Denied."); 
     }
 }
-</script>
+database.ref('wishes').on('value', (snap) => {
+    const area = document.getElementById('wishesDisplay'); area.innerHTML = "";
+    const data = snap.val();
+    if (data) Object.keys(data).reverse().forEach(k => {
+        area.innerHTML += `<div style="background:rgba(212,175,55,0.1); padding:10px; border-radius:8px; margin-bottom:10px; border-left:3px solid gold;"><strong>${data[k].name}</strong><p>${data[k].wish}</p></div>`;
+    });
+});
 
+var audio = document.getElementById('weddingMusic');
+function playMusicOnFirstClick() { audio.play(); }
+function toggleMusic() { audio.paused ? audio.play() : audio.pause(); }
+</script>
 </body>
 </html>
