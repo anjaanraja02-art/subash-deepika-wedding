@@ -11,17 +11,21 @@
 :root {
   --gold: #D4AF37;
   --dark-maroon: #2b0303; 
-  --glass: rgba(255, 255, 255, 0.08);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif; background: var(--dark-maroon); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- RESPONSIVE HEADER (Both Mobile & Desktop Optimized) --- */
+/* --- HEADER: மணமக்கள் இருவரும் முழுமையாகத் தெரிய முக்கிய மாற்றம் --- */
 header{
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('photo1.jpg') no-repeat;
-    background-size: cover;
+    
+    /* 'contain' பயன்படுத்தினால் போட்டோ வெட்டப்படாமல் முழுமையாகத் தெரியும் */
+    background-size: contain; 
+    background-position: center bottom;
+    background-color: #1a0202; /* போட்டோவுக்கு பின்னால் இருக்கும் நிறம் */
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,103 +33,62 @@ header{
     position: relative;
 }
 
-/* DESKTOP VIEW: போட்டோவை வலது பக்கம் மையப்படுத்தி காட்டும் */
-@media (min-width: 1024px) {
+/* மொபைல் வியூவில் மட்டும் போட்டோ அளவு அட்ஜஸ்ட்மென்ட் */
+@media (max-width: 768px) {
     header {
-        background-position: right center;
-        background-attachment: fixed; /* Parallax effect for desktop */
-    }
-}
-
-/* MOBILE VIEW: மணமகன் முகம் கட் ஆகாமல் இருக்க வலது பக்கத்திற்கு அதிக முக்கியத்துவம் */
-@media (max-width: 1023px) {
-    header {
-        background-position: 85% center; /* 85% வலது பக்கம் நகர்த்தப்பட்டுள்ளது */
-        background-attachment: scroll;
+        background-size: cover; /* மொபைலில் திரையை நிரப்ப */
+        background-position: center 10%; /* இருவர் முகமும் தெரிய மையப்படுத்துதல் */
     }
 }
 
 .hero-content{
     z-index:2;
-    padding: 25px;
-    background: rgba(0,0,0,0.4);
-    border-radius: 20px;
+    padding: 20px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 15px;
     backdrop-filter: blur(5px);
     border: 1px solid rgba(212, 175, 55, 0.3);
-    animation: fadeInUp 2s ease-out;
+    max-width: 90%;
 }
 
 .trending-quote {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(24px, 5vw, 32px);
+    font-size: clamp(20px, 5vw, 28px);
     color: var(--gold);
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 5px;
 }
 
 .hero-content h1{
     font-family: 'Playfair Display', serif;
-    font-size: clamp(35px, 8vw, 65px);
+    font-size: clamp(30px, 8vw, 55px);
     background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 2px 2px 15px rgba(0,0,0,0.5);
 }
 
-/* --- Sections & Cards --- */
-section{padding:80px 20px; text-align:center;}
-h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:38px; margin-bottom:10px;}
-.divider{width:60px; height:2px; background:var(--gold); margin:20px auto 30px;}
+/* --- Content Sections --- */
+section{padding:60px 20px; text-align:center;}
+h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:32px; margin-bottom:10px;}
+.divider{width:50px; height:2px; background:var(--gold); margin:15px auto 25px;}
 
 .glass-card {
-    background: var(--glass);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     border-radius: 20px;
-    padding: 35px;
-    max-width: 650px;
-    margin: 0 auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-}
-
-/* --- Gallery Grid --- */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:15px;
-    max-width: 1100px;
+    padding: 25px;
+    max-width: 600px;
     margin: 0 auto;
 }
-.gallery img{
-    width:100%; height:320px; object-fit:cover;
-    border-radius:12px; cursor:pointer;
-    transition: 0.5s ease;
-    border: 1px solid rgba(212, 175, 55, 0.1);
-}
-.gallery img:hover{ transform: scale(1.03); border-color: var(--gold); }
 
-/* --- Floating Music Button --- */
 .music-btn {
-    position: fixed; bottom: 25px; left: 20px; z-index: 1000;
-    background: var(--gold); color: #000; border: none; padding: 12px 20px;
+    position: fixed; bottom: 20px; left: 20px; z-index: 1000;
+    background: var(--gold); color: #000; border: none; padding: 10px 18px;
     border-radius: 30px; font-weight: bold; cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; gap: 8px; font-size: 13px;
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-footer{ padding:50px; background: #1a0202; color:var(--gold); text-align: center; letter-spacing: 2px;}
-
-#lightbox{
-    position:fixed; top:0; left:0; width:100%; height:100%;
-    background:rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center; z-index:9999;
-}
-#lightbox img{ max-width:90%; max-height:85%; border-radius: 10px; border: 2px solid var(--gold); }
+footer{ padding:30px; background: #1a0202; color:var(--gold); text-align: center; font-size: 14px;}
 </style>
 </head>
 
@@ -143,7 +106,7 @@ footer{ padding:50px; background: #1a0202; color:var(--gold); text-align: center
 <div class="hero-content">
   <div class="trending-quote">"Two Hearts, One Soul... A Journey of Love Begins!"</div>
   <h1>Subash & Deepika</h1>
-  <p style="font-size: 18px; letter-spacing: 2px; color: gold; margin-top: 10px;">MARCH 16 • 2026</p>
+  <p style="font-size: 16px; color: gold; margin-top: 5px;">MARCH 16 • 2026</p>
 </div>
 </header>
 
@@ -151,57 +114,21 @@ footer{ padding:50px; background: #1a0202; color:var(--gold); text-align: center
   <div class="glass-card">
     <h2>The Wedding</h2>
     <div class="divider"></div>
-    <p style="font-size: 18px; margin-bottom: 15px;">We request the honor of your presence at the marriage of our children.</p>
-    <p style="color: var(--gold); font-weight: 600; font-size: 22px;">Hindu Nadar Sanga Thirumana Mandapam</p>
+    <p>We request the honor of your presence at the marriage of our children.</p>
+    <p style="color: var(--gold); font-weight: 600; font-size: 18px; margin-top: 10px;">Hindu Nadar Sanga Thirumana Mandapam</p>
     <p>Sivagalai – Tuticorin District</p>
     <br>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.5!2d77.9616!3d8.6416!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03f0907e5c54c3%3A0x6331a98622f3066a!2sSivagalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000" 
-    width="100%" height="300" style="border-radius:15px; border:0; opacity: 0.8;" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.874136611382!2d77.942702!3d8.627255!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zOMKwMzcnMzguMSJOIDc3wrA1NiczMy43IkU!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+    width="100%" height="250" style="border-radius:15px; border:0; opacity: 0.8;" allowfullscreen="" loading="lazy"></iframe>
   </div>
-</section>
-
-<section id="gallery">
-<h2>Captured Moments</h2>
-<div class="divider"></div>
-<div class="gallery">
-  <img src="photo1.jpg" onclick="openLightbox(this.src)">
-  <img src="photo2.jpg" onclick="openLightbox(this.src)">
-  <img src="photo3.jpg" onclick="openLightbox(this.src)">
-  <img src="photo4.jpg" onclick="openLightbox(this.src)">
-  <img src="photo5.jpg" onclick="openLightbox(this.src)">
-  <img src="photo6.jpg" onclick="openLightbox(this.src)">
-  <img src="photo7.jpg" onclick="openLightbox(this.src)">
-  <img src="photo8.jpg" onclick="openLightbox(this.src)">
-  <img src="photo9.jpg" onclick="openLightbox(this.src)">
-  <img src="photo10.jpg" onclick="openLightbox(this.src)">
-</div>
-</section>
-
-<section>
-<h2>Bless the Couple</h2>
-<div class="divider"></div>
-<div class="glass-card">
-  <input type="text" placeholder="Your Name" style="width: 100%; padding: 12px; margin-bottom: 15px; background: rgba(255,255,255,0.1); border: 1px solid var(--gold); border-radius: 8px; color: #fff; outline: none;">
-  <textarea placeholder="Your Warm Wishes" style="width: 100%; padding: 12px; margin-bottom: 15px; background: rgba(255,255,255,0.1); border: 1px solid var(--gold); border-radius: 8px; color: #fff; height: 100px; outline: none;"></textarea>
-  <button style="width: 100%; background: var(--gold); color: #000; padding: 12px; border-radius: 8px; font-weight: bold; cursor: pointer;">Send Wishes</button>
-  <div style="margin-top: 25px;">
-    <button onclick="share()" style="background: #25D366; color: #fff; width: 100%; padding: 12px; border-radius: 8px; border: none; cursor: pointer; font-weight: bold;">Share on WhatsApp</button>
-  </div>
-</div>
 </section>
 
 <footer>
   WITH DIVINE BLESSINGS 🙏<br>
-  <span style="font-size: 20px; margin-top: 10px; display: block; color: var(--gold);">SUBASH ❤️ DEEPIKA</span>
+  <span style="font-size: 18px; margin-top: 10px; display: block; color: var(--gold);">SUBASH ❤️ DEEPIKA</span>
 </footer>
 
-<div id="lightbox" onclick="closeLightbox()"><img id="lightboxImg"></div>
-
 <script>
-function openLightbox(src){ document.getElementById("lightbox").style.display="flex"; document.getElementById("lightboxImg").src=src; }
-function closeLightbox(){ document.getElementById("lightbox").style.display="none"; }
-function share(){ window.open("https://wa.me/?text="+encodeURIComponent("Wedding Invitation: Subash & Deepika 💍 "+window.location.href)); }
-
 function toggleMusic() {
   var audio = document.getElementById('weddingMusic');
   var btnText = document.getElementById('btnText');
