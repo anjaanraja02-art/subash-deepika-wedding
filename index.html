@@ -15,7 +15,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif; background: var(--bg); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- CINEMATIC VIDEO INTRO --- */
+/* --- FIXED CINEMATIC VIDEO INTRO --- */
 #intro-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     background: #000; z-index: 9999; display: flex; justify-content: center; align-items: center;
@@ -23,11 +23,11 @@ body{font-family:'Poppins',sans-serif; background: var(--bg); color:#fff; scroll
 }
 #intro-video {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: cover; opacity: 0.6;
+    object-fit: cover; opacity: 0.6; /* Video பிரகாசமாக தெரிய */
 }
 .intro-text {
     z-index: 10000; text-align: center; color: var(--gold); 
-    animation: fadeInOut 5s forwards;
+    opacity: 0; animation: fadeInOut 5s forwards;
 }
 .intro-text h2 { font-family: 'Great Vibes', cursive; font-size: 35px; margin-bottom: 10px; }
 .intro-text h1 { font-family: 'Playfair Display', serif; font-size: clamp(30px, 8vw, 60px); letter-spacing: 5px; }
@@ -39,55 +39,28 @@ body{font-family:'Poppins',sans-serif; background: var(--bg); color:#fff; scroll
     100% { opacity: 0; transform: scale(1.1); }
 }
 
-/* --- MAIN LAYOUT --- */
-header {
-    height: 100vh; width: 100%; position: relative;
-    display: flex; flex-direction: column; justify-content: space-between; 
-    align-items: center; padding: 10vh 0 3vh 0; text-align: center;
-}
-.main-bg {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: url('photo2.jpg') center/cover no-repeat; z-index: 1;
-}
-header::after {
-    content: ""; position: absolute; top:0; left:0; width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(26,2,2,0.6) 0%, rgba(26,2,2,0) 40%, rgba(26,2,2,0) 60%, rgba(26,2,2,0.95) 100%);
-    z-index: 2;
-}
-
+/* --- MAIN UI --- */
+header { height: 100vh; width: 100%; position: relative; display: flex; flex-direction: column; justify-content: space-between; align-items: center; padding: 10vh 0 3vh 0; text-align: center; }
+.main-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('photo2.jpg') center/cover no-repeat; z-index: 1; }
+header::after { content: ""; position: absolute; top:0; left:0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(26,2,2,0.6) 0%, rgba(26,2,2,0) 40%, rgba(26,2,2,0) 60%, rgba(26,2,2,0.95) 100%); z-index: 2; }
 .hero-content { z-index: 10; position: relative; }
 .hero-content h1 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 10vw, 65px); color: var(--gold); text-shadow: 2px 2px 15px rgba(0,0,0,0.9); }
-
 .countdown-container { z-index: 10; position: relative; margin-bottom: 2vh; }
 .countdown-wrap { display: flex; gap: 10px; justify-content: center; }
 .count-box { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); border: 1px solid var(--gold); padding: 10px; border-radius: 12px; min-width: 65px; }
 .count-box span { display: block; font-size: 22px; font-weight: bold; color: var(--gold); }
-
-/* --- GLASSMORPHISM CARDS --- */
-.luxury-card { 
-    background: rgba(255, 255, 255, 0.03); 
-    backdrop-filter: blur(15px); 
-    border: 1px solid rgba(212, 175, 55, 0.2); 
-    border-radius: 20px; padding: 35px 20px; max-width: 700px; margin: 0 auto; text-align: center;
-}
-
+.luxury-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 20px; padding: 35px 20px; max-width: 700px; margin: 0 auto; text-align: center; }
 .action-btn { text-decoration: none; color: white; padding: 12px 20px; border-radius: 8px; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-
-/* --- SCROLL ANIMATION --- */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
 .reveal.active { opacity: 1; transform: translateY(0); }
-
 .gallery-section { padding: 40px 10px; background: #000; text-align: center; }
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
 .gallery-grid img { width: 100%; height: 320px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(212,175,55,0.15); }
-
 .wishes-display { margin-top: 30px; text-align: left; max-height: 380px; overflow-y: auto; padding-right: 8px; }
 .wish-bubble { background: rgba(212,175,55,0.08); padding: 18px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid var(--gold); position: relative; }
 .delete-btn { position: absolute; top: 10px; right: 10px; background: none; border: none; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 12px; }
-
 input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 10px; color: #fff; outline: none; }
 .btn-gold { width: 100%; background: linear-gradient(45deg, #BF953F, #FCF6BA); color: #000; padding: 15px; border-radius: 10px; font-weight: bold; cursor: pointer; border: none; font-size: 16px; }
-
 .music-btn { position: fixed; bottom: 25px; left: 20px; z-index: 1000; background: var(--gold); color: #000; border: none; padding: 10px 18px; border-radius: 25px; font-size: 13px; font-weight: bold; }
 </style>
 </head>
@@ -95,7 +68,7 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
 <body onclick="playMusicOnFirstClick()">
 
 <div id="intro-overlay">
-    <video id="intro-video" autoplay muted loop playsinline>
+    <video id="intro-video" autoplay muted loop playsinline poster="photo2.jpg">
         <source src="http://googleusercontent.com/generated_video_content/10126851600051545197" type="video/mp4">
     </video>
     <div class="intro-text">
@@ -114,7 +87,6 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
     <h1>Subash & Deepika</h1>
     <p style="letter-spacing: 4px; font-weight: bold; color: #fff; border-top: 1px solid rgba(212,175,55,0.5); display: inline-block; padding-top: 5px; margin-top: 10px;">16.03.2026</p>
   </div>
-
   <div class="countdown-container">
     <div class="countdown-wrap">
       <div class="count-box"><span id="days">00</span><label>Days</label></div>
@@ -144,13 +116,11 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
     <p style="font-size: 19px; font-weight: 600; color: #fff;">Hindu Nadar Sanga Thirumana Auditorium</p>
     <p style="font-size: 15px; opacity: 0.8; margin-bottom: 5px;">Sivagalai, Tuticorin District, Tamil Nadu.</p>
     <p style="color: gold; font-weight: bold; margin-bottom: 25px;">Muhurtham: 9:00 AM - 10:30 AM</p>
-
     <div style="display: flex; gap: 10px; margin-bottom: 25px; justify-content: center; flex-wrap: wrap;">
-      <a href="https://maps.google.com/?cid=11099997350259150042&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="action-btn" style="background: #25d366;">📍 Navigate to Venue</a>
+      <a href="googleusercontent.com/maps.google.com/10" target="_blank" class="action-btn" style="background: #25d366;">📍 Navigate to Venue</a>
       <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=Subash+%26+Deepika+Wedding&dates=20260316T090000/20260316T130000&details=Bless+the+couple+on+their+special+day!&location=Hindu+Nadar+Sanga+Thirumana+Auditorium,+Sivagalai" target="_blank" class="action-btn" style="background: #4285f4;">📅 Add to Calendar</a>
     </div>
-
-    <iframe src="https://www.google.com/maps/dir/?api=1&destination=8.639761,77.980015" width="100%" height="280" style="border-radius:15px; border:1px solid rgba(212,175,55,0.3);" allowfullscreen="" loading="lazy"></iframe>
+    <iframe src="googleusercontent.com/maps.google.com/10" width="100%" height="280" style="border-radius:15px; border:1px solid rgba(212,175,55,0.3);" allowfullscreen="" loading="lazy"></iframe>
   </div>
 </section>
 
@@ -169,16 +139,18 @@ input, textarea { width: 100%; padding: 14px; margin-bottom: 15px; background: r
 </footer>
 
 <script>
-// INTRO VIDEO DELAY
+// வீடியோ ஓடுவதை உறுதி செய்ய
 window.addEventListener('load', () => {
+    const video = document.getElementById('intro-video');
+    video.play().catch(e => console.log("Video wait for click"));
+    
     setTimeout(() => {
         const overlay = document.getElementById('intro-overlay');
         overlay.style.opacity = '0';
         setTimeout(() => overlay.style.visibility = 'hidden', 1500);
-    }, 5000); // 5 seconds cinematic intro
+    }, 5500); // 5.5 வினாடிக்குப் பிறகு வீடியோ மறையும்
 });
 
-// SCROLL REVEAL
 function reveal() {
     var reveals = document.querySelectorAll(".reveal");
     for (var i = 0; i < reveals.length; i++) {
