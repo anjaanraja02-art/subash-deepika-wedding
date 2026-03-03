@@ -10,13 +10,13 @@
 <style>
 :root {
   --gold: #D4AF37;
-  --royal-maroon: #2b0303; /* புதிய ஆடம்பரமான மெரூன் நிறம் */
+  --royal-maroon: #2b0303; /* ஆடம்பரமான மெரூன் நிறம் */
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:'Poppins',sans-serif; background: var(--royal-maroon); color:#fff; scroll-behavior:smooth; overflow-x: hidden;}
 
-/* --- HEADER SECTION --- */
+/* --- HEADER SECTION: முகத்தில் எழுத்துக்கள் படாமல் இருக்க அட்ஜஸ்ட் செய்யப்பட்டது --- */
 header{
     height: 100vh;
     width: 100%;
@@ -24,7 +24,7 @@ header{
     display: flex;
     justify-content: center;
     align-items: flex-start; /* கண்டென்ட் மேலிருந்து ஆரம்பிக்க */
-    padding-top: 15vh; /* மேலிருந்து ஒரு குறிப்பிட்ட தூரம் தள்ளி இருக்க */
+    padding-top: 12vh; /* மணமக்கள் முகம் தெரிய எழுத்துக்கள் மேலே நகர்த்தப்பட்டுள்ளது */
     text-align: center;
     overflow: hidden;
 }
@@ -40,15 +40,15 @@ header::after {
     content: "";
     position: absolute;
     top:0; left:0; width: 100%; height: 100%;
-    /* முகத்தின் மேல் நிழல் விழாமல் இருக்க Gradient அட்ஜஸ்ட்மென்ட் */
-    background: linear-gradient(to bottom, rgba(43, 3, 3, 0.5) 0%, rgba(43, 3, 3, 0.2) 40%, rgba(43, 3, 3, 0.9) 100%);
+    /* எழுத்துக்கள் தெளிவாகத் தெரிய மங்கலான நிழல் */
+    background: linear-gradient(to bottom, rgba(43, 3, 3, 0.4) 0%, rgba(43, 3, 3, 0.1) 40%, rgba(43, 3, 3, 0.9) 100%);
     z-index: 2;
 }
 
-/* மொபைல் திரையில் மணமக்கள் முகம் கட் ஆகாமல் இருக்க */
+/* மொபைல் திரையில் முகம் கட் ஆகாமல் இருக்க */
 @media (max-width: 768px) {
     .main-bg {
-        background-position: center 20%; 
+        background-position: center 15%; 
     }
 }
 
@@ -61,15 +61,15 @@ header::after {
 
 .trending-quote {
     font-family: 'Great Vibes', cursive;
-    font-size: clamp(24px, 5vw, 36px);
+    font-size: clamp(24px, 5vw, 38px);
     color: var(--gold);
     margin-bottom: 5px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
 }
 
 .hero-content h1{
     font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 8vw, 60px);
+    font-size: clamp(34px, 8vw, 65px);
     background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -79,30 +79,145 @@ header::after {
 .wedding-date {
     font-size: 16px;
     color: gold;
-    margin-top: 5px;
+    margin-top: 8px;
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
+    border-top: 1px solid gold;
+    border-bottom: 1px solid gold;
+    display: inline-block;
+    padding: 5px 15px;
 }
 
 /* --- CARDS & GALLERY --- */
 section{padding:80px 20px; text-align:center;}
-h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:36px;}
-.divider{width:60px; height:2px; background:var(--gold); margin:15px auto 35px;}
+h2{font-family:'Playfair Display',serif; color:var(--gold); font-size:36px; margin-bottom:10px;}
+.divider{width:60px; height:2px; background:var(--gold); margin:20px auto 35px;}
 
 .details-card {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(212, 175, 55, 0.3);
     border-radius: 20px;
-    padding: 35px 25px;
+    padding: 40px 25px;
     max-width: 750px;
     margin: 0 auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
 .gallery{
     display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.gallery img{
+    width:100%; height:350px; object-fit:cover;
+    border-radius:15px; cursor:pointer;
+    transition: 0.5s ease;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+.gallery img:hover{ transform: scale(1.02); border-color: var(--gold); }
+
+/* MUSIC BUTTON */
+.music-btn {
+    position: fixed; bottom: 25px; left: 20px; z-index: 1000;
+    background: var(--gold); color: #2b0303; 
+    border: none; padding: 10px 20px; border-radius: 30px; 
+    font-weight: bold; cursor: pointer;
+    display: flex; align-items: center; gap: 8px; font-size: 13px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer{ padding:60px; background: #1a0202; color:var(--gold); text-align: center; border-top: 1px solid rgba(212, 175, 55, 0.1);}
+</style>
+</head>
+
+<body>
+
+<audio id="weddingMusic" loop>
+  <source src="wedding-music.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">
+  <span id="musicIcon">🎵</span> <span id="btnText">Play Music</span>
+</button>
+
+<header>
+  <div class="main-bg"></div>
+  <div class="hero-content">
+    <div class="trending-quote">"Two Hearts, One Soul..."</div>
+    <h1>Subash & Deepika</h1>
+    <div class="wedding-date">March 16 • 2026</div>
+  </div>
+</header>
+
+<section>
+  <div class="details-card">
+    <h2>Wedding Ceremony</h2>
+    <div class="divider"></div>
+    <p style="font-size: 18px; margin-bottom: 15px; opacity: 0.9;">Join us as we step into our new journey together.</p>
+    <p style="color: var(--gold); font-weight: 600; font-size: 24px;">Hindu Nadar Sanga Thirumana Mandapam</p>
+    <p style="font-size: 18px;">Sivagalai – Tuticorin District</p>
+    <br>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15764.444256627047!2d77.9427181!3d8.9665518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b03eb2df551403b%3A0xc6c78a05c754b7c1!2sSivagalai%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1709400000000!5m2!1sen!2sin5" 
+    width="100%" height="280" style="border-radius:15px; border:0; filter: contrast(1.1) brightness(0.9);" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section id="gallery">
+    <h2>Our Special Moments</h2>
+    <div class="divider"></div>
+    <div class="gallery">
+      <img src="photo1.jpg" onclick="openLightbox(this.src)">
+      <img src="photo2.jpg" onclick="openLightbox(this.src)">
+      <img src="photo3.jpg" onclick="openLightbox(this.src)">
+      <img src="photo4.jpg" onclick="openLightbox(this.src)">
+      <img src="photo5.jpg" onclick="openLightbox(this.src)">
+      <img src="photo6.jpg" onclick="openLightbox(this.src)">
+      <img src="photo7.jpg" onclick="openLightbox(this.src)">
+      <img src="photo8.jpg" onclick="openLightbox(this.src)">
+      <img src="photo9.jpg" onclick="openLightbox(this.src)">
+      <img src="photo10.jpg" onclick="openLightbox(this.src)">
+    </div>
+</section>
+
+<footer>
+  <p style="font-size: 14px; opacity: 0.8; letter-spacing: 2px;">WITH BEST COMPLIMENTS</p>
+  <span style="font-size: 32px; margin-top: 10px; display: block; color: var(--gold); font-family: 'Great Vibes', cursive;">Subash ❤️ Deepika</span>
+</footer>
+
+<div id="lightbox" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); display:none; justify-content:center; align-items:center; z-index:9999;" onclick="this.style.display='none'">
+    <img id="lightboxImg" style="max-width:90%; max-height:85%; border: 2px solid var(--gold); border-radius:15px;">
+</div>
+
+<script>
+function openLightbox(src){ document.getElementById("lightbox").style.display="flex"; document.getElementById("lightboxImg").src=src; }
+
+function toggleMusic() {
+  var audio = document.getElementById('weddingMusic');
+  var btnText = document.getElementById('btnText');
+  var icon = document.getElementById('musicIcon');
+  if (audio.paused) {
+    audio.play();
+    btnText.innerHTML = 'Stop Music';
+    icon.innerHTML = '⏸';
+  } else {
+    audio.pause();
+    btnText.innerHTML = 'Play Music';
+    icon.innerHTML = '🎵';
+  }
+}
+</script>
+
+</body>
+</html>
     grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
     gap:15px;
     max-width: 1200px;
