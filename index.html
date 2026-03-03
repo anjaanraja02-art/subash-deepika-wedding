@@ -147,5 +147,50 @@ input:focus, textarea:focus { border-color: var(--gold); background: rgba(255,25
   </div>
 </section>
 
-<footer style="padding:60px 20px; text
-    
+<footer style="padding:60px 20px; text-align:center; background:#080000; border-top: 1px solid #1a1a1a;">
+  <p style="color: var(--gold); font-family: 'Great Vibes', cursive; font-size: 34px;">Subash ❤️ Deepika</p>
+  <p style="font-size: 11px; margin-top: 15px; opacity: 0.4; letter-spacing: 2px;">ESTD 2026</p>
+</footer>
+
+<script>
+// FIREBASE CONFIG
+const firebaseConfig = { databaseURL: "https://subashdeepikawedding-ebbd3-default-rtdb.firebaseio.com/" };
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// REAL-TIME COUNTDOWN
+const weddingDate = new Date("March 16, 2026 09:00:00").getTime();
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = weddingDate - now;
+    document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+}, 1000);
+
+// WISHES HANDLING
+function saveWish() {
+    const name = document.getElementById('nameInput').value;
+    const wish = document.getElementById('wishInput').value;
+    if (name.trim() && wish.trim()) {
+        database.ref('wishes').push().set({ name, wish }).then(() => {
+            window.open(`https://wa.me/919629377101?text=${encodeURIComponent(name + " wishes: " + wish)}`);
+            document.getElementById('nameInput').value = ""; document.getElementById('wishInput').value = "";
+        });
+    } else { alert("Please fill in both fields."); }
+}
+database.ref('wishes').on('value', (snap) => {
+    const area = document.getElementById('wishesDisplay'); area.innerHTML = "";
+    const data = snap.val();
+    if (data) Object.keys(data).reverse().forEach(k => {
+        area.innerHTML += `<div class="wish-bubble"><strong>${data[k].name}</strong><p>${data[k].wish}</p></div>`;
+    });
+});
+
+var audio = document.getElementById('weddingMusic');
+function playMusicOnFirstClick() { audio.play(); }
+function toggleMusic() { audio.paused ? audio.play() : audio.pause(); }
+</script>
+</body>
+</html>
